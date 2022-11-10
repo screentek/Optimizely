@@ -2,17 +2,19 @@
 
 [Imageshop](http://www.imageshop.org) is an online-based Digital Asset Management (DAM) software. This module integrates Imageshop in the [Optimizely 12](http://www.optimizely.com) CMS User Interface. It contains a custom property and a TinyMCE plugin that launches the Imageshop image selection interface in a dialogue.
 
-## How to get started
+## How to get started - Installation
 
-### Installing Nuget Package:
+### Summary
+The installation process currently requires some manual work. We are working to improve this process.
+
+#### 1. Installing Nuget Package:
 Start by installing NuGet package (use [Nuget.org feed](https://api.nuget.org/v3/index.json))
 
     Install-Package Imageshop.Optimizely.Plugin
-
-### Copying files: 
+#### 2. Copy files: 
 Download this nuget package as a zip file, copy all files inside of the folder "CopyTheseFiles" into the root directory of your project.
 
-### Adding two lines to your Startup.cs:
+#### 3. Adding two lines to your Startup.cs:
 Add the following lines to your startup.cs file.
 
 First line to be added at the top:
@@ -25,10 +27,10 @@ Second line can be added later on:
 
 ![ScreenShot](/docs/installation1.png)
 
-### Add to module.config:
+#### 4. Add to module.config:
 Edit your Module.config file by adding the details from [ModifyTheseFiles/module.config](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles). If you don't have a module.config file, copy paste the file into the root directory of your project.
 
-### Configure access token:
+#### 5. Configure access token:
 
 After the package is successfully installed you need to add your access token to configuration section GetaEpiImageshop in your [appsettings.json](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles) located in root directory:
 
@@ -52,7 +54,7 @@ After the package is successfully installed you need to add your access token to
 
 ## Basics
 
-Add an Imageshop image property to your content model:
+### Add an Imageshop image property to your content model:
 
     [BackingType(typeof(PropertyImageshopImage))]
     [UIHint(ImageshopSettings.UIHint.ImageshopImage)]
@@ -61,16 +63,16 @@ Add an Imageshop image property to your content model:
     [ImageshopSizePreset("Thumbnail image (400x300)", 400, 300)]
     public virtual ImageshopImage MainImage { get; set; }
 
-Minimal Imageshop image property example:
+### Minimal Imageshop image property example:
 
     [BackingType(typeof(PropertyImageshopImage))]
     public virtual ImageshopImage MainImage { get; set; }
 
-Render the image property in a view:
+### Render the image property in a view:
 
     @Html.PropertyFor(m => m.CurrentPage.MainImage)
     
-Image collection property:
+### Image collection property:
 
     [Display(Name = "Bilder")]
     [BackingType(typeof(PropertyImageshopImageCollection))]
@@ -78,16 +80,16 @@ Image collection property:
     [ImageshopSettings(ProfileID = "CAROUSEL", ShowCropDialog = false, ShowSizeDialog = false)]
     public virtual IEnumerable<ImageshopImage> Images { get; set; }
 
-Imageshop video property:
+### Imageshop video property:
 
 	[BackingType(typeof(PropertyImageshopVideo))]
 	public virtual ImageshopVideo MainVideo { get; set; }
 
-Render the video property in a view:
+### Render the video property in a view:
 
 	@Html.PropertyFor(m => m.CurrentPage.MainVideo)
 
-Imageshop video collection property:
+### Imageshop video collection property:
 
 	[BackingType(typeof(PropertyImageshopVideoCollection))]
     [UIHint(ImageshopSettings.UIHint.ImageshopVideoCollection)]
