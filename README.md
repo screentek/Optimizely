@@ -26,11 +26,11 @@ Second line can be added later on:
 ![ScreenShot](/docs/installation1.png)
 
 ### Add to module.config:
-Edit your Module.config file by adding the details from ModifyTheseFiles/module.config. If you don't have a module.config file, copy paste the file into the root directory of your project.
+Edit your Module.config file by adding the details from [ModifyTheseFiles/module.config](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles). If you don't have a module.config file, copy paste the file into the root directory of your project.
 
 ### Configure access token:
 
-After the package is successfully installed you need to add your access token to configuration section GetaEpiImageshop in your appsettings.json located in root directory:
+After the package is successfully installed you need to add your access token to configuration section GetaEpiImageshop in your [appsettings.json](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles) located in root directory:
 
 ```
     "GetaEpiImageshop": {
@@ -121,3 +121,4 @@ See configuration section &lt;geta.epi.imageshop&gt; in web.config for examples.
 ![ScreenShot](/docs/tinymce-plugin.jpg)
 
 ## Changelog
+-
