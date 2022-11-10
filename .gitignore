@@ -1,0 +1,14 @@
+*.suo
+*.user
+*.vsidx
+*.zip
+*.cache
+_ReSharper.*
+.vs/
+ImageshopOptimizely12/.vs/
+/.vs/
+bin
+obj
+packages
+Logs
+csproj.*
