@@ -17,7 +17,7 @@ Download this nuget package as a zip file, copy all files inside of the folder "
 #### 3. Adding two lines to your Startup.cs:
 Add the following lines to your startup.cs file.
 
-First line to be added at the top:
+First line to be added at the top (before the CMS is added):
 
     services.AddImageShopRegistration()
 
