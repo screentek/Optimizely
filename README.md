@@ -8,7 +8,7 @@
 The installation process currently requires some manual work. We are working to improve this process.
 
 #### 1. Installing Nuget Package:
-Start by installing NuGet package (use [Nuget.org feed](https://api.nuget.org/v3/index.json))
+Start by installing NuGet package (use [Nuget.org feed](https://www.nuget.org/packages/Imageshop.Optimizely.Plugin/))
 
     Install-Package Imageshop.Optimizely.Plugin
 #### 2. Copy files: 
