@@ -5,7 +5,7 @@
 ## How to get started
 
 ### Installing Nuget Package:
-Start by installing NuGet package (use [Episerver Nuget](http://nuget.episerver.com))
+Start by installing NuGet package (use [Nuget.org feed](https://api.nuget.org/v3/index.json))
 
     Install-Package Imageshop.Optimizely.Plugin
 
