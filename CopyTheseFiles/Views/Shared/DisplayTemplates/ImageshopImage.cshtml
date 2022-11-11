@@ -1,6 +1,0 @@
-﻿@model Imageshop.Optimizely.Plugin.ImageshopImage
-
-@if (Model != null && !string.IsNullOrWhiteSpace(Model.Url))
-{
-    <img src="@Model.Url" alt="@ViewData["ImageAltText"]">
-}
