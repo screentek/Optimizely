@@ -13,6 +13,7 @@ Start by installing NuGet package (use [Nuget.org feed](https://www.nuget.org/pa
     Install-Package Imageshop.Optimizely.Plugin
     
 Files needed for the project will be copied from the nuget package once the project is built.
+If files already exists, they will be overwritten, except for the view files: ImageshopImage.cshtml and ImageshopVideo.cshtml. If you want the newest versions of these files, delete the these two and rebuild the project.
 
 #### 2. Adding two lines to your Startup.cs:
 Add the following lines to your startup.cs file.
