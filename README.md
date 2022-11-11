@@ -1,4 +1,6 @@
 # Imageshop.Optimizely.Plugin
+[![Platform](https://img.shields.io/badge/Platform-.NET%204.6.1-blue.svg?style=flat)](https://msdn.microsoft.com/en-us/library/w0x726c2%28v=vs.110%29.aspx)
+[![Platform](https://img.shields.io/badge/Episerver-%2012.8.0-blue.svg?style=flat)](https://www.optimizely.com/products/content)
 
 [Imageshop](http://www.imageshop.org) is an online-based Digital Asset Management (DAM) software. This module integrates Imageshop in the [Optimizely 12](http://www.optimizely.com) CMS User Interface. It contains a custom property and a TinyMCE plugin that launches the Imageshop image selection interface in a dialogue.
 
@@ -111,7 +113,7 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 | culture        			| string     | Language for the client. Supports en-US and nb-NO. Norwegian is default (nb-NO). 	|
 | showSizeDialog 			| true/false | Indicates whether the size dialogue should be shown. Default is true.            	|
 | showCropDialog		 	| true/false | Indicates whether the crop dialogue should be show. Default is true.             	|
-| initializeTinyMCEPlugin	| true/false | Version 1.7.0, enables plug in for TinyMCE v > 2.0						            |
+| initializeTinyMCEPlugin	| true/false | Indicates whether the tinymce plugin should be initialized.					            |
 | sizePresets				| string     | Separated with semicolon and colon. See IMAGESHOPSIZES: https://apidocumentation.imageshop.no/	|
 
 See configuration section &lt;geta.epi.imageshop&gt; in web.config for examples.
