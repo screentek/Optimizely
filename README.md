@@ -116,11 +116,11 @@ See configuration section &lt;geta.epi.imageshop&gt; in web.config for examples.
 
 ## Screenshots
 
-![ScreenShot](/docs/epi-dialogue.jpg)
+![ScreenShot](/docs/imageshop-epi-dialogue.png)
 
-![ScreenShot](/docs/imageshop-selection.jpg)
+![ScreenShot](/docs/imageshop-selection.png)
 
-![ScreenShot](/docs/tinymce-plugin.jpg)
+![ScreenShot](/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
 -
