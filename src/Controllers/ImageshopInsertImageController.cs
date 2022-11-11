@@ -18,7 +18,7 @@ namespace Imageshop.Optimizely.Plugin.Controllers
         [Route("insertimage")]
         public IActionResult Index(string tinyMce = "False", string image = "")
         {
-            return PartialView("~/ClientResources/geta-epi-imageshop/tinymce/plugins/getaepiimageshop/InsertImage.cshtml", new InsertImageModel());
+            return PartialView("~/Views/Imageshop/InsertImage.cshtml", new InsertImageModel());
         }
     }
 }

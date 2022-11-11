@@ -3,7 +3,7 @@
     <ItemGroup>
         <!--<TinyMCEFiles Include="$(MSBuildThisFileDirectory)..\..\content\**\*.js"/>-->
         <TinyMCEFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\editor_plugin.js"/>
-        <TinyMCEFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\InsertImage.cshtml"/>
+        <TinyMCEFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Imageshop\InsertImage.cshtml"/>
         <TinyMCEFiles3 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\icon.gif"/>
         
         <WidgetsFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\ImageshopInitializer.js"/>
@@ -24,7 +24,7 @@
             DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\" />
         <Copy
             SourceFiles="@(TinyMCEFiles2)"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\" />
+            DestinationFolder="$(MSBuildProjectDirectory)\Views\Imageshop\" />
         <Copy
             SourceFiles="@(TinyMCEFiles3)"
             DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\" />
