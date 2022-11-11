@@ -116,7 +116,7 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 | initializeTinyMCEPlugin	| true/false | Indicates whether the tinymce plugin should be initialized.					            |
 | sizePresets				| string     | Separated with semicolon and colon. See IMAGESHOPSIZES: https://apidocumentation.imageshop.no/	|
 
-See configuration section &lt;geta.epi.imageshop&gt; in web.config for examples.
+See configuration section GetaEpiImageshop in appSettings.json for examples.
 
 ## Screenshots
 
