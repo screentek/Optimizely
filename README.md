@@ -104,7 +104,7 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 
 | Parameter		      		| Type       | Description                                                                      	|
 | ------------------------- | ---------- | ------------------------------------------------------------------------------------ |
-| baseUrl        			| string     | Base URL to Imageshop client. Default is http://client.imageshop.no/InsertImage.aspx |
+| baseUrl        			| string     | Base URL to Imageshop client. Default is https://client.imageshop.no/InsertImage2.aspx |
 | token          			| string     | Token identifying the user.                                                      	|
 | interfaceName  			| string     | Standard interface used when searching images.                                  		|
 | documentPrefix 			| string     | Standard document code prefix used when uploading images.                        	|
@@ -112,6 +112,7 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 | showSizeDialog 			| true/false | Indicates whether the size dialogue should be shown. Default is true.            	|
 | showCropDialog		 	| true/false | Indicates whether the crop dialogue should be show. Default is true.             	|
 | initializeTinyMCEPlugin	| true/false | Version 1.7.0, enables plug in for TinyMCE v > 2.0						            |
+| sizePresets				| string     | Separated with semicolon and colon. See IMAGESHOPSIZES: https://apidocumentation.imageshop.no/	|
 
 See configuration section &lt;geta.epi.imageshop&gt; in web.config for examples.
 
