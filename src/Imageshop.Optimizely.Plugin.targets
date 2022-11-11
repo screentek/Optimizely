@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+    <ItemGroup>
+        <!--<TinyMCEFiles Include="$(MSBuildThisFileDirectory)..\..\content\**\*.js"/>-->
+        <TinyMCEFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\editor_plugin.js"/>
+        <TinyMCEFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\InsertImage.cshtml"/>
+        <TinyMCEFiles3 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\icon.gif"/>
+        
+        <WidgetsFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\ImageshopInitializer.js"/>
+        <WidgetsFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\*.css"/>
+        <WidgetsFiles3 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\*.html"/>
+        <WidgetsFiles4 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\*.js"/>
+        <WidgetsFiles5 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\images\*.png"/>
+
+        <ViewFiles Include="$(MSBuildThisFileDirectory)..\..\content\Views\Shared\DisplayTemplates\*.cshtml"/>
+
+        <ScriptFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\scripts\*.js"/>
+        <ScriptFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\scripts\*.swf"/>
+    </ItemGroup>
+
+    <Target Name="FormsCopyModuleFiles" BeforeTargets="Build">
+        <Copy
+            SourceFiles="@(TinyMCEFiles1)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\" />
+        <Copy
+            SourceFiles="@(TinyMCEFiles2)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\" />
+        <Copy
+            SourceFiles="@(TinyMCEFiles3)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\" />
+        
+        <Copy
+            SourceFiles="@(WidgetsFiles1)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\" />
+        <Copy
+            SourceFiles="@(WidgetsFiles2)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\" />
+        <Copy
+            SourceFiles="@(WidgetsFiles3)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\" />
+        <Copy
+            SourceFiles="@(WidgetsFiles4)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\" />
+        <Copy
+            SourceFiles="@(WidgetsFiles5)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\images\" />
+
+        <Copy
+            SourceFiles="@(ViewFiles)"
+            DestinationFolder="$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\"
+            Condition="!Exists('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopImage.cshtml') AND !Exists('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopVideo.cshtml')"/>
+        
+        <Copy
+            SourceFiles="@(ScriptFiles1)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\scripts\" />
+        <Copy
+            SourceFiles="@(ScriptFiles2)"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\scripts\" />
+    </Target>
+</Project>
