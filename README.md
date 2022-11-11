@@ -11,10 +11,10 @@ The installation process currently requires some manual work. We are working to 
 Start by installing NuGet package (use [Nuget.org feed](https://www.nuget.org/packages/Imageshop.Optimizely.Plugin/))
 
     Install-Package Imageshop.Optimizely.Plugin
-#### 2. Copy files: 
-Download this nuget package as a zip file, copy all files inside of the folder "CopyTheseFiles" into the root directory of your project.
+    
+Files needed for the project will be copied from the nuget package once the project is built.
 
-#### 3. Adding two lines to your Startup.cs:
+#### 2. Adding two lines to your Startup.cs:
 Add the following lines to your startup.cs file.
 
 First line to be added at the top (before the CMS is added):
@@ -27,10 +27,10 @@ Second line can be added later on:
 
 ![ScreenShot](/docs/installation1.png)
 
-#### 4. Add to module.config:
+#### 3. Add to module.config:
 Edit your Module.config file by adding the details from [ModifyTheseFiles/module.config](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles). If you don't have a module.config file, copy paste the file into the root directory of your project.
 
-#### 5. Configure access token:
+#### 4. Configure access token:
 
 After the package is successfully installed you need to add your access token to configuration section GetaEpiImageshop in your [appsettings.json](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles) located in root directory:
 
