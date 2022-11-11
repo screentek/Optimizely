@@ -39,7 +39,6 @@
                 try {
                     this.inherited(arguments);
                     this.showHideAddButton(this.value);
-                    console.log("imageSelector.js running postCreate()");
 
                     if (this.isVideo) {
                         domClass.add(this.noImageNode, 'isVideo');
@@ -52,7 +51,6 @@
             postMixInProperties: function () {
                 try {
                     this.inherited(arguments);
-                    console.log("imageSelector.js running postMixInProperties()");
                 } catch (error) {
                     console.log("Error imageSelector postMixInProperties: " + error);
                 }
@@ -64,7 +62,6 @@
 
             clearProperty: function (evt) {
                 try {
-                    console.log("imageSelector.js running clearProperty()");
                     this._setValue(null);
                     this.currentImage = null;
                     this.onFocus();
@@ -75,7 +72,6 @@
 
             loadThumb: function (value) {
                 try {
-                    console.log("imageSelector.js running loadThumb()");
                     if (value == null) {
                         this.thumbContainer.style.display = "none";
                         this.thumbImg.src = "";
@@ -90,7 +86,6 @@
 
             onImageSelected: function () {
                 try {
-                    console.log("imageSelector.js running onImageSelected()");
                     this.inherited(arguments);
                     this._setValue(this.currentImage);
                 } catch (error) {
@@ -100,7 +95,6 @@
 
             showHideAddButton: function (value) {
                 try {
-                    console.log("imageSelector.js running showHideAddButton()");
                     if (value == null) {
                         this.noImageNode.style.display = "block";
                     } else {
@@ -117,7 +111,6 @@
 
             _getPreviewImageUrl: function (image) {
                 try {
-                    console.log("imageSelector.js running _getPreviewImageUrl()");
                     if (this.previewCropName) {
                         return image.url + "-" + this.previewCropName;
                     }
@@ -130,7 +123,6 @@
 
             _setValueAttr: function (value) {
                 try {
-                    console.log("imageSelector.js running _setValueAttr()");
                     this.currentImage = value;
                     this._set("value", this.currentImage);
                     this.loadThumb(value);
@@ -142,7 +134,6 @@
 
             _setValue: function (value) {
                 try {
-                    console.log("imageSelector.js running _setValue()");
                     if (this._started && epi.areEqual(this.value, value)) {
                         return;
                     }

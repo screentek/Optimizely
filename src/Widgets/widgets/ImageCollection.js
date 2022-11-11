@@ -60,7 +60,6 @@
 
             constructor: function () {
                 try {
-                    console.log("ImageCollection.js running constructor()");
                     this._imageCollection = [];
                     this.inherited(arguments);
                 } catch (error) {
@@ -70,7 +69,6 @@
 
             destroy: function () {
                 try {
-                    console.log("ImageCollection.js running destroy()");
                     var _a;
                     while (_a = this._imageCollection.pop()) {
                     }
@@ -83,7 +81,6 @@
 
             postCreate: function () {
                 try {
-                    console.log("ImageCollection.js running postCreate()");
                     this.inherited(arguments);
 
                     if (this.isVideo) {
@@ -99,12 +96,10 @@
             //
 
             onChange: function (value) {
-                console.log("ImageCollection.js running onChange()");
             },
 
             onImageSelected: function (image) {
                 try {
-                    console.log("ImageCollection.js running onImageSelected()");
                     this.inherited(arguments);
 
                     this._addImageToCollection(image);
@@ -116,7 +111,6 @@
 
             updateValue: function () {
                 try {
-                    console.log("ImageCollection.js running updateValue()");
                     var propertyValue = [];
 
                     array.forEach(this._imageCollection, function(entry) {
@@ -141,7 +135,6 @@
 
             _addHtmlNodesForImages: function (imageCollection) {
                 try {
-                    console.log("ImageCollection.js running _addHtmlNodesForImages()");
                     for (var i = 0; i < imageCollection.length; i++) {
                         var image = imageCollection[i];
                         this._addImageToCollection(image);
@@ -153,7 +146,6 @@
 
             _addHtmlNodesForImage: function (image) {
                 try {
-                    console.log("ImageCollection.js running _addHtmlNodesForImage()");
                     var li = domConstruct.create("li", { "class": "geta-image-list-item clearfix" }, this.imageCollectionNode);
                     var imageWrapperNode = domConstruct.create("div", { "class": "geta-image-wrapper" }, li);
 
@@ -213,7 +205,6 @@
 
             _addImageToCollection: function (image) {
                 try {
-                    console.log("ImageCollection.js running _addImageToCollection()");
                     if (image == null) {
                         return null;
                     }
@@ -233,7 +224,6 @@
 
             _getNodeIndex: function (node) {
                 try {
-                    console.log("ImageCollection.js running _getNodeIndex()");
                     for (var i = 0; i < this._imageCollection.length; i++) {
                         var image = this._imageCollection[i];
 
@@ -250,7 +240,6 @@
 
             _getPreviewImageUrl: function (image) {
                 try {
-                    console.log("ImageCollection.js running _getPreviewImageUrl()");
                     if (this.previewCropName) {
                         return image.url + "-" + this.previewCropName;
                     }
@@ -263,7 +252,6 @@
 
             _moveNode: function (index, step) {
                 try {
-                    console.log("ImageCollection.js running _moveNode()");
                     var newIndex = index + step;
                     this._imageCollection.splice(newIndex, 0, this._imageCollection.splice(index, 1)[0]);
                 } catch (error) {
@@ -273,7 +261,6 @@
 
             _onWidgetChanged: function () {
                 try {
-                    console.log("ImageCollection.js running _onWidgetChanged()");
                     this.inherited(arguments);
                     this.updateValue();
                 } catch (error) {
@@ -283,7 +270,6 @@
 
             _removeImageNode: function (node) {
                 try {
-                    console.log("ImageCollection.js running _removeImageNode()");
                     for (var i = this._imageCollection.length - 1; i >= 0; i--) {
                         var image = this._imageCollection[i];
 
@@ -301,7 +287,6 @@
 
             _setValueAttr: function (val) {
                 try {
-                    console.log("ImageCollection.js running _setValueAttr()");
                     this._set("value", val);
 
                     if (!val || !(val instanceof Array)) {
@@ -319,7 +304,6 @@
 
             _sortNodeUp: function (node) {
                 try {
-                    console.log("ImageCollection.js running _sortNodeUp()");
                     var prevNode = node.previousElementSibling;
 
                     if (prevNode != null) {
@@ -335,7 +319,6 @@
 
             _sortNodeDown: function (node) {
                 try {
-                    console.log("ImageCollection.js running _sortNodeDown()");
                     var nextNode = node.nextElementSibling;
 
                     if (nextNode != null) {
@@ -357,7 +340,6 @@
 
             _updateSortIcons: function () {
                 try {
-                    console.log("ImageCollection.js running _updateSortIcons()");
                     if (this._imageCollection.length < 1) {
                         return;
                     }

@@ -59,7 +59,6 @@ define([
             postCreate: function () {
                 try {
                     this.inherited(arguments);
-                    console.log("_imageSelector.js running postCreate()");
                     this.store = dependency.resolve('epi.storeregistry').get('imageshopstore');
                 } catch (error) {
                     console.log("Error _imageSelector postCreate: " + error);
@@ -72,7 +71,6 @@ define([
 
             closeWindow: function (evt) {
                 try {
-                    console.log("_imageSelector.js running closeWindow()");
                     if (window.removeEventListener) {
                         removeEventListener('message', this.messageReceivedCallback, false);
                     } else {
@@ -89,7 +87,6 @@ define([
 
             createFrame: function () {
                 try {
-                    console.log("_imageSelector.js running createFrame()");
                     var root = document.body;
                     var div = document.createElement("div");
                     div.setAttribute("id", this.containerId);
@@ -130,7 +127,6 @@ define([
 
             destroyFrame: function () {
                 try {
-                    console.log("_imageSelector.js running destroyFrame()");
                     var container = document.getElementById(this.containerId);
                     container.parentNode.removeChild(container);
                 } catch (error) {
@@ -143,10 +139,8 @@ define([
 
             onMessageReceived: function (event) {
                 try {
-                    console.log("_imageSelector.js running onMessageReceived()");
                     this.setBasicImage(event.data);
 
-                    console.log("STORE: " + this.store);
                     xhr.get(this.store.target + '?permalink=' + encodeURIComponent(this.currentImage.url), {
                         handleAs: 'json'
                     }).then(lang.hitch(this, function (extendedData) {
@@ -166,7 +160,6 @@ define([
 
             openWindow: function (evt) {
                 try {
-                    console.log("_imageSelector.js running openWindow()");
                     this.isShowingChildDialog = true;
 
                     this.messageReceivedCallback = lang.hitch(this, this.onMessageReceived);
@@ -185,7 +178,6 @@ define([
 
             setBasicImage: function (data) {
                 try {
-                    console.log("_imageSelector.js running setBasicImage()");
                     var imageData = JSON.parse(data.split(";")[0]);
                     var textData = imageData.text[this.preferredLanguage];
                     window.console && console.log(imageData);
@@ -220,7 +212,6 @@ define([
 
             setExtendedImage: function (data) {
                 try {
-                    console.log("_imageSelector.js running setExtendedImage()");
                     this.currentImage = this.currentImage || {};
 
                     this.currentImage.documentId = data.documentID;
