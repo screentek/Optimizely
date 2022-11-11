@@ -1,4 +1,4 @@
-# Geta.EPi.Imageshop
+# Imageshop.Optimizely.Plugin
 
 [Imageshop](http://www.imageshop.org) is an online-based Digital Asset Management (DAM) software. This module integrates Imageshop in the [Optimizely 12](http://www.optimizely.com) CMS User Interface. It contains a custom property and a TinyMCE plugin that launches the Imageshop image selection interface in a dialogue.
 
