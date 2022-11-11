@@ -15,12 +15,10 @@ define([
         initialize: function () {
             try {
                 this.inherited(arguments);
-                console.log("ImageshopInitializer.js running initialize()");
 
                 var registry = this.resolveDependency("epi.storeregistry");
                 //Register the store
                 registry.create("imageshopstore", "/imageshopextended/imageshopstore/");
-                console.log("ImageshopInitializer: created 'imageshopstore' on path '/imageshopextended/imageshopstore/'")
             } catch (error) {
                 console.log("Error ImageshopInitializer.js initialize(): " + error);
             }

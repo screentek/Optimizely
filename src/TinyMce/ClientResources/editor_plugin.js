@@ -5,13 +5,13 @@ var currentUrl = location.href;
 
 tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
     var imageNode;
-    console.log("Now running editor_plugin.js for Imageshop plugin")
 
     // Register commands
     ed.addCommand('mcegetaepiimageshop', function () {
 
         try {
-            var dialogUrl = "https://localhost:5000/imageshoptinymce/insertimage/?tinyMce=True";//url + "/imageshoptinymce/insertimage/?tinyMce=true";
+            var baseUrl = location.protocol + '//' + location.host;
+            var dialogUrl = baseUrl + "/imageshoptinymce/insertimage/?tinyMce=True";
             console.log("Url for dialog: " + dialogUrl);
 
             if (ed.selection !== null && ed.selection.getNode() !== null && ed.selection.getNode().src !== null)
@@ -31,7 +31,6 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
         }
     });
 
-    console.log("Icon url for imageshop button: " + url + "/images/icon.gif");
     // Register buttons
     ed.addButton("getaepiimageshop", {
         title: "Insert/Upload Imageshop Image",
@@ -54,10 +53,10 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
         getMetadata: function () {
             return {
                 name: "Imageshop image plugin",
-                url: "http://geta.se",
-                author: 'Geta AS, Mattias Olsson, tinymce 2.x compatible by Inmeta AS, Fredrik Skarderud',
-                authorurl: 'http://geta.se',
-                infourl: 'http://geta.se',
+                url: "https://github.com/screentek/Optimizely",
+                author: 'Geta AS, Bouvet, Imageshop, tinymce 3.3.0',
+                authorurl: 'https://github.com/screentek/Optimizely',
+                infourl: 'https://github.com/screentek/Optimizely',
                 version: tinymce.majorVersion + "." + tinymce.minorVersion
             };
         }
