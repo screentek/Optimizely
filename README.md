@@ -115,7 +115,7 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 | showSizeDialog 			| true/false | Indicates whether the size dialogue should be shown. Default is true.            	|
 | showCropDialog		 	| true/false | Indicates whether the crop dialogue should be show. Default is true.             	|
 | initializeTinyMCEPlugin	| true/false | Indicates whether the tinymce plugin should be initialized.					            |
-| sizePresets				| string     | Separated with semicolon and colon. See IMAGESHOPSIZES: https://apidocumentation.imageshop.no/	|
+| sizePresets				| string     | String in the format <Size name 1>;<width1>x<height1>:<Size name 2>;<width2>x<height2>... Predefined sizes the user can choose from.	|
 
 See configuration section GetaEpiImageshop in appSettings.json for examples.
 
