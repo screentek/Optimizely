@@ -11,7 +11,7 @@ Github repository: https://github.com/screentek/Optimizely
 The installation process currently requires some manual work. We are working to improve this process.
 
 #### 1. Installing Nuget Package:
-Start by installing NuGet package (use [Nuget.org feed](https://www.nuget.org/packages/Imageshop.Optimizely.Plugin/))
+Start by installing NuGet package (use [the Nuget.org feed](https://www.nuget.org/packages/Imageshop.Optimizely.Plugin/) or [the Optimizely feed](https://nuget.optimizely.com/package/?id=Imageshop.Optimizely.Plugin))
 
     Install-Package Imageshop.Optimizely.Plugin
     
