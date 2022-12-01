@@ -4,12 +4,12 @@ using Imageshop.Optimizely.Plugin.WebService;
 using Imageshop.Optimizely.Plugin.WebService.Responses;
 using Imageshop.Optimizely.Plugin.Configuration;
 using Microsoft.AspNetCore.Authorization;
+using System;
+using EPiServer.Logging;
 
 namespace Imageshop.Optimizely.Plugin.Controllers
 {
-    [RestStore("imageshopextended")]
-    [Area("imageshopextended")]
-    [Route("imageshopextended/[controller]")]
+    [RestStore("imageshopstore")]
     [Authorize(Roles = "WebAdmins, Administrators, WebEditors, CmsAdmins, CmsEditors")]
     /// <summary>
     ///  Controller used to retrieve extended metadata view in popup for TinyMCE to Imageshop
@@ -25,18 +25,26 @@ namespace Imageshop.Optimizely.Plugin.Controllers
         }
 
         [HttpGet]
+        [Route("/imageshopextended/imageshopstore/")]
         public ActionResult Get(string permalink)
         {
-            GetDocumentIdFromPermalinkResponse idResponse = _webServiceWrapper.GetDocumentIdFromPermalink(permalink).Result;
-
-            if (idResponse != null)
+            try
             {
-                GetDocumentByIdResponse documentResponse = _webServiceWrapper.GetDocumentById(idResponse.DocumentID).Result;
+                GetDocumentIdFromPermalinkResponse idResponse = _webServiceWrapper.GetDocumentIdFromPermalink(permalink).Result;
 
-                if (documentResponse != null)
+                if (idResponse != null)
                 {
-                    return Rest(documentResponse);
+                    GetDocumentByIdResponse documentResponse = _webServiceWrapper.GetDocumentById(idResponse.DocumentID).Result;
+
+                    if (documentResponse != null)
+                    {
+                        return Rest(documentResponse);
+                    }
                 }
+            } catch (Exception ex)
+            {
+                var logger = LogManager.GetLogger(typeof(ImageshopStore));
+                logger.Error("Error fetching documents from ImageShop: permalink " + permalink + ". Message: " + ex.Message);
             }
 
             return Rest(null);
