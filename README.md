@@ -131,4 +131,4 @@ See configuration section GetaEpiImageshop in appSettings.json for examples.
 ![ScreenShot](/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
--
+- **v1.0.36**: On install: Files will be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes
