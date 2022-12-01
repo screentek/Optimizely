@@ -9,10 +9,11 @@
         <projectUrl>https://github.com/screentek/Optimizely</projectUrl>
         <license type="expression">Apache-2.0</license>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <releaseNotes></releaseNotes>
+        <repository type="git" url="https://github.com/screentek/Optimizely" />
         <copyright>Copyright © Imageshop.no</copyright>
         <tags>Episerver, Optimizely, Imageshop</tags>
         <readme>docs\README.md</readme>
+        <releaseNotes>v1.0.36: Files will now be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes</releaseNotes>
         <dependencies>
           <dependency id="EPiServer.CMS" version="12.8.0" />
         </dependencies>
