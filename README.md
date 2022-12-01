@@ -32,7 +32,7 @@ Second line can be added later on:
 
     services.AddImageshopTinyMceConfiguration()
 
-![ScreenShot](/docs/installation1.png)
+![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/installation1.png)
 
 #### 3. Add to module.config:
 Edit your Module.config file by adding the details from [ModifyTheseFiles/module.config](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles). If you don't have a module.config file, copy paste the file into the root directory of your project.
@@ -57,7 +57,7 @@ After the package is successfully installed you need to add your access token to
     }
 ```
 
-![ScreenShot](/docs/config.png)
+![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/config.png)
 
 ## Basics
 
@@ -124,11 +124,11 @@ See configuration section GetaEpiImageshop in appSettings.json for examples.
 
 ## Screenshots
 
-![ScreenShot](/docs/imageshop-epi-dialogue.png)
+![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-epi-dialogue.png)
 
-![ScreenShot](/docs/imageshop-selection.png)
+![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-selection.png)
 
-![ScreenShot](/docs/imageshop-tinymce-plugin.png)
+![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
 - **v1.0.36**: On install: Files will be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes
