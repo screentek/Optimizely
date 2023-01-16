@@ -180,7 +180,14 @@ define([
                 try {
                     var imageData = JSON.parse(data.split(";")[0]);
                     var textData = imageData.text[this.preferredLanguage];
-                    window.console && console.log(imageData);
+
+                    var imageProfileData = null;
+                    if (imageData.profile) {
+                        imageProfileData = {
+                            name: imageData.profile.name,
+                            profileSizes: imageData.profile.profileSizes
+                        }
+                    }
 
                     this.currentImage = {
                         code: imageData.code,
@@ -188,8 +195,11 @@ define([
                         width: imageData.image.width,
                         height: imageData.image.height,
                         changed: new Date(),
-                        cropName: this.cropName
+                        cropName: this.cropName,
+                        profile: imageProfileData
                     };
+
+                    window.console && console.log(this.currentImage);
 
                     if (textData) {
                         this.currentImage.name = textData.title;
