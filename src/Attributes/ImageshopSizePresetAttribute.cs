@@ -5,7 +5,7 @@ namespace Imageshop.Optimizely.Plugin.Attributes
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class ImageshopSizePresetAttribute : Attribute
     {
-        private string? _name;
+        private string _name;
 
         public ImageshopSizePresetAttribute(int width, int height) : this(null!, width, height)
         {

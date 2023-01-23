@@ -7,7 +7,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
 {
     public static class ImageshopConfigurationSection
     {
-        private static ImageshopSettings? _settings;
+        private static ImageshopSettings _settings;
         public static ImageshopSettings Settings { 
             get
             {

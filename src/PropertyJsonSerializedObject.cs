@@ -7,7 +7,7 @@ namespace Imageshop.Optimizely.Plugin
 {
     public abstract class PropertyJsonSerializedObject<T> : PropertyLongString where T : class
     {
-        protected T? _value;
+        protected T _value;
         private readonly EPiServer.Logging.ILogger _log = LogManager.GetLogger(typeof(PropertyJsonSerializedObject<T>));
 
         public override Type PropertyValueType => typeof(T);

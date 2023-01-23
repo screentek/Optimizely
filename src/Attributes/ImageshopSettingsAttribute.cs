@@ -16,16 +16,16 @@ namespace Imageshop.Optimizely.Plugin.Attributes
         }
 
         [Description("Name of the default interface (if any).")]
-        public string? InterfaceName { get; set; }
+        public string InterfaceName { get; set; }
 
         [Description("Standard document code prefix used when uploading images.")]
-        public string? DocumentPrefix { get; set; }
+        public string DocumentPrefix { get; set; }
 
         [Description("Culture (en-US and nb-NO supported). Default is nb-NO.")]
-        public string? Culture { get; set; }
+        public string Culture { get; set; }
 
         [Description("The id of the Imageshop profile to use.")]
-        public string? ProfileID { get; set; }
+        public string ProfileID { get; set; }
 
         [Description("Show size dialog. Default is true.")]
         public bool ShowSizeDialog { get; set; }
@@ -37,9 +37,9 @@ namespace Imageshop.Optimizely.Plugin.Attributes
         public bool FreeCrop { get; set; }
 
         [Description("Name of the crop to use for preview when editing. Default is empty string.")]
-        public string? PreviewCropName { get; set; }
+        public string PreviewCropName { get; set; }
 
         [Description("Name of the crop to use for the image. Default is empty string.")]
-        public string? CropName { get; set; }
+        public string CropName { get; set; }
     }
 }

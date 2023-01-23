@@ -10,21 +10,21 @@ namespace Imageshop.Optimizely.Plugin.WebService.Responses
         [XmlElement]
         public int DocumentID { get; set; }
         [XmlElement]
-        public string? Code { get; set; }
+        public string Code { get; set; }
         [XmlElement]
-        public string? Name { get; set; }
+        public string Name { get; set; }
         [XmlElement]
-        public string? Credits { get; set; }
+        public string Credits { get; set; }
         [XmlElement]
-        public string? Rights { get; set; }
+        public string Rights { get; set; }
         [XmlElement]
-        public string? Description { get; set; }
+        public string Description { get; set; }
         [XmlElement]
-        public string? Tags { get; set; }
+        public string Tags { get; set; }
         [XmlElement]
-        public string? Comment { get; set; }
+        public string Comment { get; set; }
         [XmlElement]
-        public string? AuthorName { get; set; }
+        public string AuthorName { get; set; }
         [XmlElement]
         public bool IsImage { get; set; }
         [XmlElement]

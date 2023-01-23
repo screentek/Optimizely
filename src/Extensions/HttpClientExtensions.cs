@@ -12,7 +12,7 @@ namespace Imageshop.Optimizely.Plugin.Extensions
             response.EnsureSuccessStatusCode();
             var resultData = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
             var serializer = new XmlSerializer(typeof(T));
-            var data = (T?)serializer.Deserialize(resultData);
+            var data = (T)serializer.Deserialize(resultData);
             return data!;
         }
     }

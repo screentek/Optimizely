@@ -30,7 +30,7 @@ namespace Imageshop.Optimizely.Plugin.Descriptors
         {
             base.ModifyMetadata(metadata, attributes);
 
-            ImageshopSettingsAttribute? configurationAttribute = GetConfigurationAttribute(metadata, attributes);
+            ImageshopSettingsAttribute configurationAttribute = GetConfigurationAttribute(metadata, attributes);
             IEnumerable<ImageshopSizePresetAttribute> sizePresetAttributes = GetSizePresetAttributes(metadata, attributes);
 
             UriBuilder dialogUrl = ImageshopDialogUrlBuilder.BuildDialogUrl(configurationAttribute!, sizePresetAttributes, IsVideoDescriptor);
@@ -57,7 +57,7 @@ namespace Imageshop.Optimizely.Plugin.Descriptors
             return neutralCulture.Name.ToLowerInvariant();
         }
 
-        protected virtual ImageshopSettingsAttribute? GetConfigurationAttribute(ExtendedMetadata metadata, IEnumerable<Attribute> attributes)
+        protected virtual ImageshopSettingsAttribute GetConfigurationAttribute(ExtendedMetadata metadata, IEnumerable<Attribute> attributes)
         {
             return attributes.OfType<ImageshopSettingsAttribute>().FirstOrDefault() ??
                    metadata.ContainerType.GetCustomAttribute<ImageshopSettingsAttribute>(true);

@@ -27,12 +27,12 @@ namespace Imageshop.Optimizely.Plugin.Extensions
             return null!;
         }
 
-        public static ImageshopVideoData? GetFirstVideo(this ImageshopVideo video)
+        public static ImageshopVideoData GetFirstVideo(this ImageshopVideo video)
         {
             return video.Videos?.FirstOrDefault();
         }
 
-        public static ImageshopVideoData? GetFirstVideo(this ImageshopVideo video, string type)
+        public static ImageshopVideoData GetFirstVideo(this ImageshopVideo video, string type)
         {
             return video.Videos?.FirstOrDefault(x => x.Type!.Equals(type, StringComparison.InvariantCultureIgnoreCase));
         }
