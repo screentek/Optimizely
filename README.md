@@ -131,5 +131,6 @@ See configuration section GetaEpiImageshop in appSettings.json for examples.
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
+- **v1.0.38**: ImageshopImage model has now been updated to contain InterfaceList for the selected image.
 - **v1.0.37**: ImageshopImage model has now been updated to contain profiles for the selected image.
 - **v1.0.36**: On install: Files will be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes
