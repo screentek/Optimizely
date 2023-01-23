@@ -180,6 +180,7 @@ define([
                 try {
                     var imageData = JSON.parse(data.split(";")[0]);
                     var textData = imageData.text[this.preferredLanguage];
+                    window.console && console.log(imageData);
 
                     var imageProfileData = null;
                     if (imageData.profile) {
