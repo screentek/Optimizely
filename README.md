@@ -34,6 +34,12 @@ Second line can be added later on:
 
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/installation1.png)
 
+If you have problems with routes that causes the client to not load, you can add this to your Configure method, app.UseEndpoints, in startup.cs:
+
+    endpoints.MapControllers();
+
+![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/mapcontrollers.png)
+
 #### 3. Add to module.config:
 Edit your Module.config file by adding the details from [ModifyTheseFiles/module.config](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles). If you don't have a module.config file, copy paste the file into the root directory of your project.
 
@@ -131,6 +137,7 @@ See configuration section GetaEpiImageshop in appSettings.json for examples.
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
+- **v1.0.39**: Updated plugin to support TinyMCE v5 and newer. Bugfix: Missing images are now included when building your project.
 - **v1.0.38**: ImageshopImage model has now been updated to contain InterfaceList for the selected image.
 - **v1.0.37**: ImageshopImage model has now been updated to contain profiles for the selected image.
 - **v1.0.36**: On install: Files will be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes

@@ -1,9 +1,9 @@
-<?xml version = "1.0" ?>
+﻿<?xml version = "1.0" ?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Imageshop.Optimizely.Plugin</id>
         <description>Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/screentek/Optimizely for more details.</description>
-        <version>1.0.38</version>
+        <version>1.0.39</version>
         <authors>Geta, Bouvet</authors>
         <owners>Imageshop</owners>
         <projectUrl>https://github.com/screentek/Optimizely</projectUrl>
@@ -13,7 +13,7 @@
         <copyright>Copyright © Imageshop.no</copyright>
         <tags>Episerver, Optimizely, Imageshop</tags>
         <readme>docs\README.md</readme>
-        <releaseNotes>v1.0.38: ImageshopImage model has now been updated to contain InterfaceList for the selected image.</releaseNotes>
+        <releaseNotes>v1.0.39: Updated plugin to support TinyMCE v5 and newer. Bugfix: Missing images are now included when building your project.</releaseNotes>
         <dependencies>
           <dependency id="EPiServer.CMS" version="12.8.0" />
         </dependencies>
