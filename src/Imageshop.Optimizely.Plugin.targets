@@ -4,6 +4,7 @@
         <TinyMCEFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\editor_plugin.js"/>
         <TinyMCEFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Imageshop\InsertImage.cshtml"/>
         <TinyMCEFiles3 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\icon.gif"/>
+        <TinyMCEFiles4 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\icon.png"/>
         
         <WidgetsFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\ImageshopInitializer.js"/>
         <WidgetsFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\*.css"/>
@@ -31,7 +32,11 @@
             SourceFiles="@(TinyMCEFiles3)"
             SkipUnchangedFiles="true"
             DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\" />
-        
+        <Copy
+            SourceFiles="@(TinyMCEFiles4)"
+            SkipUnchangedFiles="true"
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\" />
+
         <Copy
             SourceFiles="@(WidgetsFiles1)"
             SkipUnchangedFiles="true"
@@ -51,8 +56,7 @@
         <Copy
             SourceFiles="@(WidgetsFiles5)"
             SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\images\"
-            Condition="%(Filename)!='' AND (!Exists('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopImage.cshtml') OR $([System.DateTime]::Parse('%(ModifiedTime)').Ticks) &gt; $([System.IO.File]::GetLastWriteTime('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopImage.cshtml').Ticks))" />
+            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\images\" />
 
         
         <!-- View files will overwrite if modified date on package files are NEWER (file size ignored)
