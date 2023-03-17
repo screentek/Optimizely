@@ -3,44 +3,30 @@ var tinymce = tinymce || {};
 
 var currentUrl = location.href;
 
-function getMethods(obj) {
-    var result = [];
-    for (var id in obj) {
-        try {
-            if (typeof (obj[id]) == "function") {
-                result.push(id + ": " + obj[id].toString());
-            }
-        } catch (err) {
-            result.push(id + ": inaccessible");
-        }
-    }
-    return result;
-}
-
-function logProperties(obj) {
-    for (let prop in obj) {
-        console.log(prop + ': ' + obj[prop]);
-    }
-}
-
 tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
     var imageNode;
 
     console.log("Tinymce version: " + tinymce.majorVersion + "." + tinymce.minorVersion);
 
+    var hostUrl = location.protocol + '//' + location.host;
     var buttonTitle = "Insert/Upload Imageshop Image";
     var buttonText = "";
-    var buttonIcon = url + "/images/icon.gif";
-    var dialogUrl = location.protocol + '//' + location.host + "/imageshoptinymce/insertimage/?tinyMce=True";
+    var buttonIcon = url + "/images/icon.png";
+    var dialogUrl = hostUrl + "/imageshoptinymce/insertimage/?tinyMce=True";
 
     if (tinymce.majorVersion >= 5) {
         console.log("running tinymce setup for version 5 and higher");
 
+        console.log("used icon url: " + buttonIcon);
+
+        // Register icon for Imageshop
+        ed.ui.registry.addIcon('imageshopIcon', '<img src="' + buttonIcon + '" />');
+
         // Register buttons
-        ed.ui.registry.addButton("getaepiimageshop", {
+        ed.ui.registry.addButton('getaepiimageshop', {
             title: buttonTitle,
             text: buttonText,
-            icon: buttonIcon,
+            icon: 'imageshopIcon',
             onAction: function () {
                 try {
                     console.log("Url for dialog: " + dialogUrl);
@@ -61,14 +47,14 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
                 // Node change handler to toggle button active state
                 const nodeChangeHandler = function(e) {
                     var isWebShopImage = e.element.tagName === "IMG" && (ed.dom.getAttrib(e.element, "class").indexOf("ScrImageshopImage") > -1 || ed.dom.getAttrib(e.element, "class").indexOf("mceItem") === -1);
-                    logProperties(e);
-                    logProperties(e.element);
-
                     console.log("isWebShopImage?");
                     console.log(isWebShopImage);
+
+                    //Set or reset imageNode to the node cause Image Editor command enabled
+                    imageNode = isWebShopImage ? e.element : null;
                     api.setEnabled(isWebShopImage);
                     api.setEnabled(true);
-                };
+                }; 
 
                 // Register node change handler
                 ed.on('NodeChange', nodeChangeHandler);
