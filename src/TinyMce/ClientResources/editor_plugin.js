@@ -67,7 +67,7 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
         });
     }
     else {
-        console.log("running tinymce setup for version 5 and higher");
+        console.log("running tinymce setup for versions older than version 5");
 
         // Register commands
         ed.addCommand('mcegetaepiimageshop', function () {
