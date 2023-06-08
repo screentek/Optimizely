@@ -63,6 +63,8 @@ After the package is successfully installed you need to add your access token to
     }
 ```
 
+> **Note**: The plugin will first look for settings based on your current environment. If it's set to "Development" it will first look into appSettings.Development.json, if still not found it will look for settings inside appSettings.json (settings for your current environment will override settings in appSettings.json). The settings file can also be called appsettings.json (with a lowercase s).
+
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/config.png)
 
 ## Basics
@@ -137,6 +139,7 @@ See configuration section GetaEpiImageshop in appSettings.json for examples.
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
+- **v1.0.41**: Bugfixes: Settings can now be read from appsettings.<environment>.json files with fallback on appsettings.json, In tinymce we have added increased support for linux systems (case sensitivity for files), added additional close button to tinymce popup window, fixed bug where the source of the popup window sometimes was undefined.
 - **v1.0.40**: Bugfixes: Images now display alt-text correctly and added some useful comments on view files for models.
 - **v1.0.39**: Updated plugin to support TinyMCE v5 and newer. Bugfix: Missing images are now included when building your project.
 - **v1.0.38**: ImageshopImage model has now been updated to contain InterfaceList for the selected image.
