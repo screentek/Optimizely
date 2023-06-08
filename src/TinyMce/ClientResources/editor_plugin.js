@@ -9,16 +9,25 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
     console.log("Tinymce version: " + tinymce.majorVersion + "." + tinymce.minorVersion);
 
     var hostUrl = location.protocol + '//' + location.host;
+
+    if (hostUrl.includes('undefined')) {
+        var urlParts = ed.documentBaseUrl.match(/^(\w+:)\/\/([^:/?]+)(?::(\d+))?/);
+        if (urlParts) {
+            var protocol = urlParts[1];
+            var hostname = urlParts[2];
+            var port = urlParts[3] ? urlParts[3] : "";
+
+            hostUrl = protocol + '//' + hostname + (port ? ':' + port : '');
+        }
+    }
+
     var buttonTitle = "Insert/Upload Imageshop Image";
     var buttonText = "";
     var buttonIcon = url + "/images/icon.png";
-    var dialogUrl = hostUrl + "/imageshoptinymce/insertimage/?tinyMce=True";
+    var controllerPath = "/imageshoptinymce/insertimage/";
+    var dialogUrl = hostUrl + controllerPath + "?tinyMce=True";
 
     if (tinymce.majorVersion >= 5) {
-        console.log("running tinymce setup for version 5 and higher");
-
-        console.log("used icon url: " + buttonIcon);
-
         // Register icon for Imageshop
         ed.ui.registry.addIcon('imageshopIcon', '<img src="' + buttonIcon + '" />');
 
@@ -29,14 +38,19 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
             icon: 'imageshopIcon',
             onAction: function () {
                 try {
-                    console.log("Url for dialog: " + dialogUrl);
+                    var currentDialogUrl = dialogUrl;
 
                     if (ed.selection !== null && ed.selection.getNode() !== null && ed.selection.getNode().src !== null)
                         dialogUrl += "&image=" + encodeURIComponent(ed.selection.getNode().src);
 
                     tinymce.activeEditor.windowManager.openUrl({
                         title: 'ImageShop',
-                        url: dialogUrl
+                        url: currentDialogUrl,
+                        buttons: [{
+                            type: 'cancel',
+                            name: 'close',
+                            text: 'Close'
+                        }]
                     });
 
                 } catch (error) {
@@ -47,12 +61,9 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
                 // Node change handler to toggle button active state
                 const nodeChangeHandler = function(e) {
                     var isWebShopImage = e.element.tagName === "IMG" && (ed.dom.getAttrib(e.element, "class").indexOf("ScrImageshopImage") > -1 || ed.dom.getAttrib(e.element, "class").indexOf("mceItem") === -1);
-                    console.log("isWebShopImage?");
-                    console.log(isWebShopImage);
 
                     //Set or reset imageNode to the node cause Image Editor command enabled
                     imageNode = isWebShopImage ? e.element : null;
-                    api.setEnabled(isWebShopImage);
                     api.setEnabled(true);
                 }; 
 
@@ -61,7 +72,7 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
 
                 // Return function to unregister node change handler
                 return function() {
-                    editor.off('NodeChange', nodeChangeHandler);
+                    ed.off('NodeChange', nodeChangeHandler);
                 };
             }
         });
@@ -73,13 +84,13 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
         ed.addCommand('mcegetaepiimageshop', function () {
 
             try {
-                console.log("Url for dialog: " + dialogUrl);
+                var currentDialogUrl = dialogUrl;
 
                 if (ed.selection !== null && ed.selection.getNode() !== null && ed.selection.getNode().src !== null)
                     dialogUrl += "&image=" + encodeURIComponent(ed.selection.getNode().src);
 
                 ed.windowManager.open({
-                    file: dialogUrl,
+                    file: currentDialogUrl,
                     width: 950,
                     height: 650,
                     scrollbars: 1,
