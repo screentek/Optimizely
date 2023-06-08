@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Imageshop.Optimizely.Plugin.Configuration
 {
@@ -12,7 +13,8 @@ namespace Imageshop.Optimizely.Plugin.Configuration
         {
             get
             {
-                if (_settings == null) return GetSettingsSection();
+                if (_settings == null)
+                    _settings = GetSettingsSection();
                 return _settings;
             }
         }
@@ -22,14 +24,15 @@ namespace Imageshop.Optimizely.Plugin.Configuration
             var environment = GetEnvironmentName();
             var builder = new ConfigurationBuilder();
 
-            if (environment != null)
+            if (!string.IsNullOrEmpty(environment))
             {
+                //Supports both appSettings and appsettings (case sensitive on linux):
+                builder.AddJsonFile($"appSettings.{environment}.json", optional: true);
                 builder.AddJsonFile($"appsettings.{environment}.json", optional: true);
             }
-            else
-            {
-                builder.AddJsonFile("appsettings.json", optional: true);
-            }
+
+            builder.AddJsonFile("appSettings.json", optional: true);
+            builder.AddJsonFile("appsettings.json", optional: true);
 
             var configuration = builder.Build();
             var settingsSection = configuration.GetSection("GetaEpiImageshop:Settings");
@@ -52,12 +55,17 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                     SizePresets = GetListOfSizePresets(settingsSection["sizePresets"] ?? string.Empty)
                 };
 
-                _settings = settings;
                 return settings;
             }
             catch (Exception)
             {
-                throw new Exception("Problem occurred reading GetaEpiImageshop section from appSettings.json, please check your configuration.");
+                string filesChecked = "appSettings.json, appsettings.json";
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    filesChecked = $"appSettings.{environment}.json, appsettings.{environment}.json, " + filesChecked;
+                }
+
+                throw new Exception($"Error: Could not find the GetaEpiImageshop settings section. Tried in the following order: {filesChecked}, please check your configuration.");
             }
         }
 
@@ -105,13 +113,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
 
         private static string GetEnvironmentName()
         {
-            var environmentVariable = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            if (!string.IsNullOrEmpty(environmentVariable))
-            {
-                return environmentVariable;
-            }
-
-            return null;
+            return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         }
     }
 }
