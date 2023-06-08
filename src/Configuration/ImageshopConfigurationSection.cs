@@ -8,7 +8,8 @@ namespace Imageshop.Optimizely.Plugin.Configuration
     public static class ImageshopConfigurationSection
     {
         private static ImageshopSettings _settings;
-        public static ImageshopSettings Settings { 
+        public static ImageshopSettings Settings
+        {
             get
             {
                 if (_settings == null) return GetSettingsSection();
@@ -18,7 +19,20 @@ namespace Imageshop.Optimizely.Plugin.Configuration
 
         private static ImageshopSettings GetSettingsSection()
         {
-            var settingsSection = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("GetaEpiImageshop:Settings");
+            var environment = GetEnvironmentName();
+            var builder = new ConfigurationBuilder();
+
+            if (environment != null)
+            {
+                builder.AddJsonFile($"appsettings.{environment}.json", optional: true);
+            }
+            else
+            {
+                builder.AddJsonFile("appsettings.json", optional: true);
+            }
+
+            var configuration = builder.Build();
+            var settingsSection = configuration.GetSection("GetaEpiImageshop:Settings");
 
             try
             {
@@ -40,7 +54,8 @@ namespace Imageshop.Optimizely.Plugin.Configuration
 
                 _settings = settings;
                 return settings;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 throw new Exception("Problem occurred reading GetaEpiImageshop section from appSettings.json, please check your configuration.");
             }
@@ -71,7 +86,8 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                 {
                     width = int.Parse(sizesPartsString[0]);
                     height = int.Parse(sizesPartsString[1]);
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
                     continue;
                 }
@@ -85,6 +101,17 @@ namespace Imageshop.Optimizely.Plugin.Configuration
             }
 
             return listOfSizeElements;
+        }
+
+        private static string GetEnvironmentName()
+        {
+            var environmentVariable = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            if (!string.IsNullOrEmpty(environmentVariable))
+            {
+                return environmentVariable;
+            }
+
+            return null;
         }
     }
 }
