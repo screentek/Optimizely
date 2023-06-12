@@ -25,7 +25,7 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
     var buttonText = "";
     var buttonIcon = url + "/images/icon.png";
     var controllerPath = "/imageshoptinymce/insertimage/";
-    var dialogUrl = hostUrl + controllerPath + "?tinyMce=True";
+    var dialogUrl = hostUrl + controllerPath + "?TINYMCE=true&TINYMCEEXTENDED=true";
 
     if (tinymce.majorVersion >= 5) {
         // Register icon for Imageshop
