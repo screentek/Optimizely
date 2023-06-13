@@ -54,10 +54,50 @@
             }
         }
 
+        function isNumeric(num) {
+            return !isNaN(num);
+        }
+
         function listener(event) {
             var eventdata = event.data.split(";");
-            console.log(eventdata);
-            insert(eventdata[0], eventdata[1], eventdata[2], eventdata[3]);
+            //file, title, width, height, alignment = null, descriptionstring = null
+
+            var file = eventdata[0];
+            var title = eventdata[1];
+            var width = eventdata[2];
+            var height = eventdata[3];
+            var alignment = eventdata[4];
+            var descriptionString = eventdata[4];
+
+            console.log("Checking content:");
+            console.log(file);
+            console.log(title);
+            console.log(width);
+            console.log(height);
+            console.log(alignment);
+            console.log(descriptionString);
+
+            console.log("Checking typeof:");
+            console.log(typeof (file));
+            console.log(typeof (title));
+            console.log(typeof (width));
+            console.log(typeof (height));
+            console.log(typeof (alignment));
+            console.log(typeof (descriptionString));
+
+            console.log("Checking int values:");
+            console.log(isNumeric(file));
+            console.log(isNumeric(title));
+            console.log(isNumeric(width));
+            console.log(isNumeric(height));
+            console.log(isNumeric(alignment));
+            console.log(isNumeric(descriptionString));
+
+            if (file !== undefined && title !== undefined && isNumeric(width) && isNumeric(height)) {
+                insert(file, title, width, height, alignment, descriptionString);
+            }
+            console.log("Tried to return invalid data..");
+            //insert(file, title, width, height, alignment, descriptionstring);
         }
 
         $(function () {
