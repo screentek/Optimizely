@@ -54,10 +54,24 @@
             }
         }
 
+        function isNumeric(num) {
+            return !isNaN(num);
+        }
+
         function listener(event) {
             var eventdata = event.data.split(";");
-            console.log(eventdata);
-            insert(eventdata[0], eventdata[1], eventdata[2], eventdata[3], eventdata[4], eventdata[5]);
+            //file, title, width, height, alignment = null, descriptionstring = null
+
+            var file = eventdata[0];
+            var title = eventdata[1];
+            var width = eventdata[2];
+            var height = eventdata[3];
+            var alignment = eventdata[4];
+            var descriptionString = eventdata[4];
+
+            if (file !== undefined && isNumeric(width) && isNumeric(height)) {
+                insert(file, title, width, height, alignment, descriptionString);
+            }
         }
 
         $(function () {
