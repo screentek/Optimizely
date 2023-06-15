@@ -3,7 +3,7 @@
     <metadata>
         <id>Imageshop.Optimizely.Plugin</id>
         <description>Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/screentek/Optimizely for more details.</description>
-        <version>1.0.41</version>
+        <version>1.1.0</version>
         <authors>Geta, Bouvet</authors>
         <owners>Imageshop</owners>
         <projectUrl>https://github.com/screentek/Optimizely</projectUrl>
@@ -13,7 +13,7 @@
         <copyright>Copyright © Imageshop.no</copyright>
         <tags>Episerver, Optimizely, Imageshop</tags>
         <readme>docs\README.md</readme>
-        <releaseNotes>v1.0.41: Bugfixes: Settings can now be read from appsettings.environment.json files with fallback on appsettings.json, In tinymce we have added increased support for linux systems, added additional close button to tinymce popup window, fixed bug where the source of the popup window sometimes was undefined.</releaseNotes>
+        <releaseNotes>v1.1.0: Images inserted to TinyMCE now contains additional metadata and data-attributes. Popup window for TinyMCE no longer automatically closing after a few seconds.</releaseNotes>
         <dependencies>
           <dependency id="EPiServer.CMS" version="12.8.0" />
         </dependencies>
