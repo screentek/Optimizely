@@ -19,7 +19,7 @@
         <ScriptFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\scripts\*.swf"/>
     </ItemGroup>
 
-    <Target Name="FormsCopyModuleFiles" BeforeTargets="Build">
+    <Target Name="ImageshopCopyModuleFiles" BeforeTargets="Build">
         <Copy
             SourceFiles="@(TinyMCEFiles1)"
             SkipUnchangedFiles="true"
