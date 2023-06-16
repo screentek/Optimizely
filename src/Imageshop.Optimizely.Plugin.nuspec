@@ -13,7 +13,7 @@
         <copyright>Copyright © Imageshop.no</copyright>
         <tags>Episerver, Optimizely, Imageshop</tags>
         <readme>docs\README.md</readme>
-        <releaseNotes>v1.1.1: Bugfix: The files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.</releaseNotes>
+        <releaseNotes>v1.1.1: Solved bug where the files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.</releaseNotes>
         <dependencies>
           <dependency id="EPiServer.CMS" version="12.8.0" />
         </dependencies>
