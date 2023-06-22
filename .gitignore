@@ -12,3 +12,4 @@ obj
 packages
 Logs
 csproj.*
+src/ZippedFiles
