@@ -1,13 +1,15 @@
 @echo off
 setlocal enabledelayedexpansion
 
-echo "-------------------------------"
-echo "-- Packing project into .zip --"
-echo "-------------------------------"
+set "action=%1"
 
-set "CD=%~dp0"  rem Current directory
-set "DD=%CD%\ZippedFiles"  rem Destination directory
-set "zipFileName=Imageshop.Optimizely.Plugin.zip"  rem Name of the zip file
+if not "%action%" == "release" (
+    echo "---------------------------------"
+    echo "Please run 'Release.cmd' instead."
+    echo "---------------------------------"
+    pause
+    exit /b 1
+)
 
 rem -- Get the version of the plugin from the nuspec file --
 set "nuspecFile=%~dp0Imageshop.Optimizely.Plugin.nuspec"
@@ -18,25 +20,34 @@ for /f %%v in ('type "%nuspecFile%" ^| "%sedPath%" -nE "s/.*<version>(.*)<\/vers
     set "version=%%v"
 )
 
+echo "---------------------------------------------------"
+echo "-- Packing Imageshop.Optimizely.Plugin into .zip --"
+echo "--     Plugin version %version%     --"
+echo "---------------------------------------------------"
+
+set "CD=%~dp0"  rem Current directory
+set "DD=%CD%\ZippedFiles"  rem Destination directory
+set "zipFileName=Imageshop.Optimizely.Plugin.zip"  rem Name of the zip file
+
 rem -- Copying files to the Zippedfiles directory. --
 echo "Copying tinymce editor files:"
-set "destinationPath=%DD%\content\ClientResources\tinymce\"
+set "destinationPath=%DD%\content\%version%\ClientResources\tinymce\"
 xcopy "%CD%\TinyMce\ClientResources\editor\*" "%destinationPath%\" /S /I /Y
 
 echo "Copying tinymce view files:"
-set "destinationPath=%DD%\content\Views\Imageshop\"
+set "destinationPath=%DD%\content\%version%\Views\Imageshop\"
 xcopy "%CD%\TinyMce\ClientResources\ViewFiles\*" "%destinationPath%\" /S /I /Y
 
 echo "Copying property view files:"
-set "destinationPath=%DD%\content\Views\Shared\DisplayTemplates\"
+set "destinationPath=%DD%\content\%version%\Views\Shared\DisplayTemplates\"
 xcopy "%CD%\PropertyViewFiles\*" "%destinationPath%\" /S /I /Y
 
 echo "Copying scripts:"
-set "destinationPath=%DD%\content\scripts"
+set "destinationPath=%DD%\content\%version%\scripts"
 xcopy "%CD%\scripts\*" "%destinationPath%\" /S /I /Y
 
 echo "Copying module.config:"
-set "destinationPath=%DD%\content"
+set "destinationPath=%DD%\content\"
 copy "module.config" "%destinationPath%\" /Y
 
 rem Create the zip file
@@ -50,4 +61,3 @@ powershell -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSyste
 echo Zip file created: %zipFile%
 
 endlocal
-pause
