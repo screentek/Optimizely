@@ -13,12 +13,13 @@ if not "%action%" == "release" (
 
 rem -- Get the version of the plugin from the nuspec file --
 set "nuspecFile=%~dp0Imageshop.Optimizely.Plugin.nuspec"
-set "sedPath=%~dp0PackingTools/sed.exe"
 
 set "version="
-for /f %%v in ('type "%nuspecFile%" ^| "%sedPath%" -nE "s/.*<version>(.*)<\/version>.*/\1/p"') do (
-    set "version=%%v"
+for /f "usebackq tokens=2 delims=()" %%a in (`findstr /R /C:"AssemblyVersion(.*)" "Properties\AssemblyInfo.cs"`) do (
+    set "version=%%~a"
 )
+
+echo Version: %version%
 
 echo ---------------------------------------------------
 echo -- Packing Imageshop.Optimizely.Plugin into .zip --
@@ -58,9 +59,26 @@ echo Copying scripts:
 set "destinationPath=%DD%\content\%version%\scripts"
 xcopy "%CD%\scripts\*" "%destinationPath%\" /S /I /Y
 
+rem -- Update module.config with actual version number --
+set "sourceModuleConfig=%CD%\module.config"
+set "tempModuleConfig=%CD%\temp_module.config"
+
+rem Copy module.config to a temporary file
+echo Copying module.config to a temporary file
+copy "%sourceModuleConfig%" "%tempModuleConfig%" /Y
+
+rem Update the version number in the temporary module.config file
+echo Updating version number of temporary module.config file
+powershell -Command "(gc '%tempModuleConfig%') -replace '\$version\$', '%version%' | Set-Content -Path '%tempModuleConfig%'"
+
+rem Copy the updated temporary module.config to the ZippedFiles folder
 echo Copying module.config:
 set "destinationPath=%DD%\content\"
-copy "module.config" "%destinationPath%\" /Y
+copy "%tempModuleConfig%" "%destinationPath%\module.config" /Y
+
+rem Delete the existing temp_module.config file:
+echo Deleting temp_module.config file
+del "%tempModuleConfig%"
 
 rem Create the zip file
 set "zipFile=%DD%\%zipFileName%"
