@@ -3,7 +3,7 @@
     <metadata>
         <id>Imageshop.Optimizely.Plugin</id>
         <description>Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/screentek/Optimizely for more details.</description>
-        <version>1.1.10039</version>
+        <version>1.1.10045</version>
         <authors>Geta, Bouvet</authors>
         <owners>Imageshop</owners>
         <projectUrl>https://github.com/screentek/Optimizely</projectUrl>
@@ -22,6 +22,11 @@
         <file src="bin\Release\net6.0\Imageshop.Optimizely.Plugin.dll" target="lib\net6.0\" />
         <file src="Imageshop.Optimizely.Plugin.targets" target="build\net6.0\" />
         <file src="..\README.md" target="docs\" />
+
+		<file src="TinyMce\ClientResources\ViewFiles\InsertImage.cshtml" target="content\Views\Imageshop\" />
+		<file src="PropertyViewFiles\ImageshopImage.cshtml" target="content\Views\Shared\DisplayTemplates\" />
+		<file src="PropertyViewFiles\ImageshopVideo.cshtml" target="content\Views\Shared\DisplayTemplates\" />
+		
 		<file src="ZippedFiles\Imageshop.Optimizely.Plugin.zip" target="modules\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip" />
 	</files>
 </package>

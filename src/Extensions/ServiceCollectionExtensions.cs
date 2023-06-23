@@ -30,8 +30,6 @@ namespace Imageshop.Optimizely.Plugin.Extensions
                 {
                     config.Default()
                         .AddEpiserverSupport()
-                        //.AddExternalPlugin("getaepiimageshop", "/ClientResources/geta-epi-imageshop/tinymce/plugins/getaepiimageshop/editor_plugin.js")
-                        //.AddExternalPlugin("imageshopoptimizelyplugin", "~/modules/Imageshop.Optimizely.Plugin/1.1.10034/tinymce/editor_plugin.js")
                         .AddExternalPlugin("imageshopoptimizelyplugin", $"../../../../../modules/Imageshop.Optimizely.Plugin/{pluginVersion}/ClientResources/tinymce/editor_plugin.js")
                         .AppendToolbar("imageshopoptimizelyplugin");
                 });

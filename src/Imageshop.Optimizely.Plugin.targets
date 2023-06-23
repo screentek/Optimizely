@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
     <ItemGroup>
+        <DisplayTemplates1 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Shared\DisplayTemplates\ImageshopImage.cshtml"/>
+		<DisplayTemplates2 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Shared\DisplayTemplates\ImageshopVideo.cshtml"/>
+
+		<InsertImageViewFile Include="$(MSBuildThisFileDirectory)..\..\content\Views\Imageshop\InsertImage.cshtml"/>
+
 		<ZipFile Include="$(MSBuildThisFileDirectory)..\..\modules\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip"/>
 	</ItemGroup>
 
 	<Target Name="ImageshopCopyModuleFilesOnBuild" BeforeTargets="Build">
 		<Message Importance="high" Text="Copying Imageshop module files..." />
 
+		<Copy
+            SourceFiles="@(InsertImageViewFile)"
+            SkipUnchangedFiles="true"
+            DestinationFolder="$(MSBuildProjectDirectory)\Views\Imageshop\" />
+        
+		<Copy
+            SourceFiles="@(DisplayTemplates1)"
+            DestinationFolder="$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\"
+            Condition="%(Filename)!='' AND (!Exists('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopImage.cshtml') OR $([System.DateTime]::Parse('%(ModifiedTime)').Ticks) &gt; $([System.IO.File]::GetLastWriteTime('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopImage.cshtml').Ticks))" />
+
+        <Copy
+            SourceFiles="@(DisplayTemplates2)"
+            DestinationFolder="$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\"
+            Condition="%(Filename)!='' AND (!Exists('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopVideo.cshtml') OR $([System.DateTime]::Parse('%(ModifiedTime)').Ticks) &gt; $([System.IO.File]::GetLastWriteTime('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopVideo.cshtml').Ticks))" />
+		
 		<Copy
             SourceFiles="@(ZipFile)"
             DestinationFolder="$(MSBuildProjectDirectory)\modules\Imageshop.Optimizely.Plugin\" />

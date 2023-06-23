@@ -19,8 +19,6 @@ namespace Imageshop.Optimizely.Plugin.Controllers
         public IActionResult Index(string tinyMce = "False", string image = "")
         {
             return PartialView("~/Views/Imageshop/InsertImage.cshtml", new InsertImageModel());
-            //return PartialView("~/modules/Imageshop.Optimizely.Plugin/1.1.10031/Views/Imageshop/InsertImage.cshtml", new InsertImageModel());
-            //return PartialView("https://localhost:5000/modules/Imageshop.Optimizely.Plugin/1.1.10032/Views/Imageshop/InsertImage.cshtml", new InsertImageModel());
         }
     }
 }
