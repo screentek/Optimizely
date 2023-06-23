@@ -3,7 +3,7 @@ var tinymce = tinymce || {};
 
 var currentUrl = location.href;
 
-tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
+tinymce.PluginManager.add("imageshopoptimizelyplugin", function (ed, url) {
     var imageNode;
 
     console.log("Tinymce version: " + tinymce.majorVersion + "." + tinymce.minorVersion);
@@ -32,7 +32,7 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
         ed.ui.registry.addIcon('imageshopIcon', '<img src="' + buttonIcon + '" />');
 
         // Register buttons
-        ed.ui.registry.addButton('getaepiimageshop', {
+        ed.ui.registry.addButton('imageshopoptimizelyplugin', {
             title: buttonTitle,
             text: buttonText,
             icon: 'imageshopIcon',
@@ -81,7 +81,7 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
         console.log("running tinymce setup for versions older than version 5");
 
         // Register commands
-        ed.addCommand('mcegetaepiimageshop', function () {
+        ed.addCommand('mceimageshopoptimizelyplugin', function () {
 
             try {
                 var currentDialogUrl = dialogUrl;
@@ -99,14 +99,14 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
                     plugin_url: url
                 });
             } catch (error) {
-                console.log("Error running command mcegetaepiimageshop: " + error);
+                console.log("Error running command mceimageshopoptimizelyplugin: " + error);
             }
         });
 
         // Register buttons
-        ed.addButton("getaepiimageshop", {
+        ed.addButton("imageshopoptimizelyplugin", {
             title: buttonTitle,
-            cmd: "mcegetaepiimageshop",
+            cmd: "mceimageshopoptimizelyplugin",
             image: buttonIcon,
             onPostRender: function () {
                 // Add a node change handler, selects the button in the UI when a image is selected
@@ -127,7 +127,7 @@ tinymce.PluginManager.add("getaepiimageshop", function (ed, url) {
             return {
                 name: "Imageshop image plugin",
                 url: "https://github.com/screentek/Optimizely",
-                author: 'Geta AS, Bouvet, Imageshop, tinymce 3.3.0',
+                author: 'Geta AS, Bouvet ASA, Imageshop, tinymce ' + tinymce.majorVersion + '.' + tinymce.minorVersion,
                 authorurl: 'https://github.com/screentek/Optimizely',
                 infourl: 'https://github.com/screentek/Optimizely',
                 version: tinymce.majorVersion + "." + tinymce.minorVersion

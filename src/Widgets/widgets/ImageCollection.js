@@ -9,7 +9,7 @@
 
         "dijit/form/Button",
 
-        "geta-epi-imageshop/widgets/_ImageSelector",
+        "imageshop-optimizely-plugin/widgets/_ImageSelector",
 
         "epi/epi",
         "epi/dependency",
@@ -37,7 +37,7 @@
 
         template
     ) {
-        return declare("geta-epi-imageshop/widgets/ImageCollection", [_ImageSelector], {
+        return declare("imageshop-optimizely-plugin/widgets/ImageCollection", [_ImageSelector], {
             //
             // Private
             //

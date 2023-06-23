@@ -10,7 +10,7 @@ namespace Imageshop.Optimizely.Plugin.Descriptors
 
         public ImageshopVideoEditorDescriptor()
         {
-            ClientEditingClass = "geta-epi-imageshop/widgets/ImageSelector";
+            ClientEditingClass = "imageshop-optimizely-plugin/widgets/ImageSelector";
         }
     }
 }

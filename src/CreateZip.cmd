@@ -4,9 +4,9 @@ setlocal enabledelayedexpansion
 set "action=%1"
 
 if not "%action%" == "release" (
-    echo "---------------------------------"
-    echo "Please run 'Release.cmd' instead."
-    echo "---------------------------------"
+    echo ---------------------------------
+    echo Please run 'Release.cmd' instead.
+    echo ---------------------------------
     pause
     exit /b 1
 )
@@ -20,42 +20,50 @@ for /f %%v in ('type "%nuspecFile%" ^| "%sedPath%" -nE "s/.*<version>(.*)<\/vers
     set "version=%%v"
 )
 
-echo "---------------------------------------------------"
-echo "-- Packing Imageshop.Optimizely.Plugin into .zip --"
-echo "--     Plugin version %version%     --"
-echo "---------------------------------------------------"
+echo ---------------------------------------------------
+echo -- Packing Imageshop.Optimizely.Plugin into .zip --
+echo --           Plugin version %version%           --
+echo ---------------------------------------------------
 
 set "CD=%~dp0"  rem Current directory
 set "DD=%CD%\ZippedFiles"  rem Destination directory
 set "zipFileName=Imageshop.Optimizely.Plugin.zip"  rem Name of the zip file
 
+rem Delete the existing ZippedFiles directory if it exists:
+if exist "%DD%" (
+    rmdir /s /q "%DD%"
+)
+
 rem -- Copying files to the Zippedfiles directory. --
-echo "Copying tinymce editor files:"
+
+rem -- Copying tinymce editor files --
+echo Copying tinymce editor files:
 set "destinationPath=%DD%\content\%version%\ClientResources\tinymce\"
 xcopy "%CD%\TinyMce\ClientResources\editor\*" "%destinationPath%\" /S /I /Y
 
-echo "Copying tinymce view files:"
+rem -- Copying widget files. --
+echo Copying widget files:
+set "destinationPath=%DD%\content\%version%\ClientResources\"
+xcopy "%CD%\Widgets\*" "%destinationPath%\" /S /I /Y
+
+echo Copying tinymce view files:
 set "destinationPath=%DD%\content\%version%\Views\Imageshop\"
 xcopy "%CD%\TinyMce\ClientResources\ViewFiles\*" "%destinationPath%\" /S /I /Y
 
-echo "Copying property view files:"
+echo Copying property view files:
 set "destinationPath=%DD%\content\%version%\Views\Shared\DisplayTemplates\"
 xcopy "%CD%\PropertyViewFiles\*" "%destinationPath%\" /S /I /Y
 
-echo "Copying scripts:"
+echo Copying scripts:
 set "destinationPath=%DD%\content\%version%\scripts"
 xcopy "%CD%\scripts\*" "%destinationPath%\" /S /I /Y
 
-echo "Copying module.config:"
+echo Copying module.config:
 set "destinationPath=%DD%\content\"
 copy "module.config" "%destinationPath%\" /Y
 
 rem Create the zip file
 set "zipFile=%DD%\%zipFileName%"
-rem Delete the existing zip file if it exists
-if exist "%zipFile%" (
-    del "%zipFile%"
-)
 powershell -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [System.IO.Compression.ZipFile]::CreateFromDirectory('%DD%\content', '%zipFile%'); }"
 
 echo Zip file created: %zipFile%
