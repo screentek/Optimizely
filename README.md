@@ -126,6 +126,10 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 
 See configuration section GetaEpiImageshop in appSettings.json for examples.
 
+## Support
+
+If you encounter any bugs or have any feature requests, please feel free to create a new issue here on GitHub. For additional support, please reach out to us at support@imageshop.no.
+
 ## Screenshots
 
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-epi-dialogue.png)
