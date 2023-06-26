@@ -1,9 +1,9 @@
-﻿<?xml version = "1.0" ?>
+<?xml version = "1.0" ?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Imageshop.Optimizely.Plugin</id>
         <description>Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/screentek/Optimizely for more details.</description>
-        <version>1.1.1</version>
+        <version>1.1.10047</version>
         <authors>Geta, Bouvet</authors>
         <owners>Imageshop</owners>
         <projectUrl>https://github.com/screentek/Optimizely</projectUrl>
@@ -22,19 +22,11 @@
         <file src="bin\Release\net6.0\Imageshop.Optimizely.Plugin.dll" target="lib\net6.0\" />
         <file src="Imageshop.Optimizely.Plugin.targets" target="build\net6.0\" />
         <file src="..\README.md" target="docs\" />
-        
-        <file src="TinyMce\ClientResources\editor_plugin.js" target="content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\" />
-        <file src="TinyMce\ClientResources\images\icon.gif" target="content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\" />
-        <file src="TinyMce\ClientResources\images\icon.png" target="content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\" />
-        <file src="TinyMce\ClientResources\InsertImage.cshtml" target="content\Views\Imageshop\" />
 
-        <file src="Widgets\**" target="content\wwwroot\ClientResources\geta-epi-imageshop\" />
-        
-        <file src="PropertyViewFiles\ImageshopImage.cshtml" target="content\Views\Shared\DisplayTemplates\" />
-        <file src="PropertyViewFiles\ImageshopVideo.cshtml" target="content\Views\Shared\DisplayTemplates\" />
-        <file src="scripts\jwplayer.flash.swf" target="content\wwwroot\scripts\" />
-        <file src="scripts\jwplayer.html5.js" target="content\wwwroot\scripts\" />
-        <file src="scripts\jwplayer.js" target="content\wwwroot\scripts\" />
-        <file src="scripts\jwplayer.imageshop.js" target="content\wwwroot\scripts\" />
-    </files>
+		<file src="TinyMce\ClientResources\ViewFiles\InsertImage.cshtml" target="content\Views\Imageshop\" />
+		<file src="PropertyViewFiles\ImageshopImage.cshtml" target="content\Views\Shared\DisplayTemplates\" />
+		<file src="PropertyViewFiles\ImageshopVideo.cshtml" target="content\Views\Shared\DisplayTemplates\" />
+		
+		<file src="ZippedFiles\Imageshop.Optimizely.Plugin.zip" target="modules\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip" />
+	</files>
 </package>

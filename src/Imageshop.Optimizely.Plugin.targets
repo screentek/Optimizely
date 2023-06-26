@@ -1,83 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
     <ItemGroup>
-        <TinyMCEFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\editor_plugin.js"/>
-        <TinyMCEFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Imageshop\InsertImage.cshtml"/>
-        <TinyMCEFiles3 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\icon.gif"/>
-        <TinyMCEFiles4 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\icon.png"/>
-        
-        <WidgetsFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\ImageshopInitializer.js"/>
-        <WidgetsFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\*.css"/>
-        <WidgetsFiles3 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\*.html"/>
-        <WidgetsFiles4 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\*.js"/>
-        <WidgetsFiles5 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\ClientResources\geta-epi-imageshop\widgets\images\*.png"/>
+        <DisplayTemplates1 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Shared\DisplayTemplates\ImageshopImage.cshtml"/>
+		<DisplayTemplates2 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Shared\DisplayTemplates\ImageshopVideo.cshtml"/>
 
-        <ViewFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Shared\DisplayTemplates\ImageshopImage.cshtml"/>
-        <ViewFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\Views\Shared\DisplayTemplates\ImageshopVideo.cshtml"/>
+		<InsertImageViewFile Include="$(MSBuildThisFileDirectory)..\..\content\Views\Imageshop\InsertImage.cshtml"/>
 
-        <ScriptFiles1 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\scripts\*.js"/>
-        <ScriptFiles2 Include="$(MSBuildThisFileDirectory)..\..\content\wwwroot\scripts\*.swf"/>
-    </ItemGroup>
+		<ZipFile Include="$(MSBuildThisFileDirectory)..\..\modules\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip"/>
+	</ItemGroup>
 
-    <Target Name="ImageshopCopyModuleFiles" BeforeTargets="Build">
-        <Copy
-            SourceFiles="@(TinyMCEFiles1)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\" />
-        <Copy
-            SourceFiles="@(TinyMCEFiles2)"
+	<Target Name="ImageshopCopyModuleFilesOnBuild" BeforeTargets="Build">
+		<Message Importance="high" Text="Copying Imageshop module files..." />
+
+		<Copy
+            SourceFiles="@(InsertImageViewFile)"
             SkipUnchangedFiles="true"
             DestinationFolder="$(MSBuildProjectDirectory)\Views\Imageshop\" />
-        <Copy
-            SourceFiles="@(TinyMCEFiles3)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\" />
-        <Copy
-            SourceFiles="@(TinyMCEFiles4)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\tinymce\plugins\getaepiimageshop\images\" />
-
-        <Copy
-            SourceFiles="@(WidgetsFiles1)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\" />
-        <Copy
-            SourceFiles="@(WidgetsFiles2)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\" />
-        <Copy
-            SourceFiles="@(WidgetsFiles3)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\templates\" />
-        <Copy
-            SourceFiles="@(WidgetsFiles4)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\" />
-        <Copy
-            SourceFiles="@(WidgetsFiles5)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\ClientResources\geta-epi-imageshop\widgets\images\" />
-
         
-        <!-- View files will overwrite if modified date on package files are NEWER (file size ignored)
-             This will give developers an opportunity to have their own view files (old files must have a newer modified date in order to not be replaced when plugin is updated) -->
-        <Copy
-            SourceFiles="@(ViewFiles1)"
+		<Copy
+            SourceFiles="@(DisplayTemplates1)"
             DestinationFolder="$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\"
             Condition="%(Filename)!='' AND (!Exists('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopImage.cshtml') OR $([System.DateTime]::Parse('%(ModifiedTime)').Ticks) &gt; $([System.IO.File]::GetLastWriteTime('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopImage.cshtml').Ticks))" />
 
         <Copy
-            SourceFiles="@(ViewFiles2)"
+            SourceFiles="@(DisplayTemplates2)"
             DestinationFolder="$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\"
             Condition="%(Filename)!='' AND (!Exists('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopVideo.cshtml') OR $([System.DateTime]::Parse('%(ModifiedTime)').Ticks) &gt; $([System.IO.File]::GetLastWriteTime('$(MSBuildProjectDirectory)\Views\Shared\DisplayTemplates\ImageshopVideo.cshtml').Ticks))" />
+		
+		<Copy
+            SourceFiles="@(ZipFile)"
+            DestinationFolder="$(MSBuildProjectDirectory)\modules\Imageshop.Optimizely.Plugin\" />
+	</Target>
 
-        <Copy
-            SourceFiles="@(ScriptFiles1)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\scripts\" />
-        <Copy
-            SourceFiles="@(ScriptFiles2)"
-            SkipUnchangedFiles="true"
-            DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\scripts\" />
-    </Target>
+	<Target Name="ImageshopCopyModuleFilesAfterBuild" AfterTargets="Build">
+		<!-- Clean-up after build -->
+		<Delete Files="$(MSBuildProjectDirectory)\modules\_protected\Imageshop.Optimizely.Plugin.zip" />
+		<Delete Files="$(MSBuildProjectDirectory)\modules\Imageshop.Optimizely.Plugin\EPiServer.Forms.UI.zip" />
+	</Target>
 </Project>

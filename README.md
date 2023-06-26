@@ -8,20 +8,19 @@ Github repository: https://github.com/screentek/Optimizely
 ## How to get started - Installation
 
 ### Summary
+
 The installation process currently requires some manual work. We are working to improve this process.
 
 #### 1. Installing Nuget Package:
+
 Start by installing NuGet package (use [the Nuget.org feed](https://www.nuget.org/packages/Imageshop.Optimizely.Plugin/) or [the Optimizely feed](https://nuget.optimizely.com/package/?id=Imageshop.Optimizely.Plugin))
 
     Install-Package Imageshop.Optimizely.Plugin
-    
-> **Note**: Files needed for the project will be copied from the nuget package once the project is built. Files will only be copied if they are modified (unchanged files are skipped). 
 
-> **Note**: **Exception:** On build: ImageshopImage.cshtml and ImageshopVideo.cshtml will only be overwritten if their modified dates from the nuget package are newer than the modified dates of these two files in your project. If you wish to keep your own ImageshopImage.cshtml and ImageshopVideo.cshtml files, modify the files before updating the plugin. 
-
-> **Note**: Different projects may store view files in different directories, we are working for a solution for this.
+> **Note**: **Exception:** On build: ImageshopImage.cshtml and ImageshopVideo.cshtml will only be overwritten if their modified dates from the nuget package are newer than the modified dates of these two files in your project. If you wish to keep your own ImageshopImage.cshtml and ImageshopVideo.cshtml files, modify the files before updating the plugin.
 
 #### 2. Adding two lines to your Startup.cs:
+
 Add the following lines to your startup.cs file.
 
 First line to be added at the top (before the CMS is added):
@@ -40,15 +39,12 @@ If you have problems with routes that causes the client to not load, you can add
 
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/mapcontrollers.png)
 
-#### 3. Add to module.config:
-Edit your Module.config file by adding the details from [ModifyTheseFiles/module.config](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles). If you don't have a module.config file, copy paste the file into the root directory of your project.
+#### 3. Configure access token:
 
-#### 4. Configure access token:
-
-After the package is successfully installed you need to add your access token to configuration section GetaEpiImageshop in your [appsettings.json](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles) located in root directory:
+After the package is successfully installed you need to add your access token to configuration section ImageshopOptimizelyPlugin in your [appsettings.json](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles) located in root directory:
 
 ```
-    "GetaEpiImageshop": {
+    "ImageshopOptimizelyPlugin": {
         "Settings": {
             "token": "<Token here>",
             "interfaceName": "",
@@ -130,6 +126,10 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 
 See configuration section GetaEpiImageshop in appSettings.json for examples.
 
+## Support
+
+If you encounter any bugs or have any feature requests, please feel free to create a new issue here on GitHub. For additional support, please reach out to us at support@imageshop.no.
+
 ## Screenshots
 
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-epi-dialogue.png)
@@ -140,6 +140,7 @@ See configuration section GetaEpiImageshop in appSettings.json for examples.
 
 ## Changelog
 
+- **v1.2.0**: Refactoring: The majority of the plugin files have been relocated to the modules/Imageshop.Optimizely.Plugin directory, instead of directly being copied into your project structure. Module.config file is also located inside the modules folder, so you are no longer needed to manually create this file. Please note that the settings section inside your appsettings.json has been renamed to ImageshopOptimizelyPlugin. If you encounter any issues, please refer to the updated installation guide on GitHub for assistance.
 - **v1.1.1**: Solved bug where the files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.
 - **v1.1.0**: Images inserted to TinyMCE now contains additional data. Popup window for TinyMCE no longer automatically closing after a few seconds.
 - **v1.0.41**: Bugfixes: Settings can now be read from appsettings.<environment>.json files with fallback on appsettings.json, In tinymce we have added increased support for linux systems (case sensitivity for files), added additional close button to tinymce popup window, fixed bug where the source of the popup window sometimes was undefined.

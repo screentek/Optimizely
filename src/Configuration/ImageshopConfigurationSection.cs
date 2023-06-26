@@ -35,7 +35,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
             builder.AddJsonFile("appsettings.json", optional: true);
 
             var configuration = builder.Build();
-            var settingsSection = configuration.GetSection("GetaEpiImageshop:Settings");
+            var settingsSection = configuration.GetSection("ImageshopOptimizelyPlugin:Settings");
 
             try
             {
@@ -65,7 +65,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                     filesChecked = $"appSettings.{environment}.json, appsettings.{environment}.json, " + filesChecked;
                 }
 
-                throw new Exception($"Error: Could not find the GetaEpiImageshop settings section. Tried in the following order: {filesChecked}, please check your configuration.");
+                throw new Exception($"Error: Could not find the ImageshopOptimizelyPlugin settings section. Tried in the following order: {filesChecked}, please check your configuration.");
             }
         }
 

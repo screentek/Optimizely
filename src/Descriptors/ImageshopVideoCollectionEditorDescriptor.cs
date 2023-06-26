@@ -14,7 +14,7 @@ namespace Imageshop.Optimizely.Plugin.Descriptors
 
         public ImageshopVideoCollectionEditorDescriptor()
         {
-            ClientEditingClass = "geta-epi-imageshop/widgets/ImageCollection";
+            ClientEditingClass = "imageshop-optimizely-plugin/widgets/ImageCollection";
         }
 
         public override void ModifyMetadata(ExtendedMetadata metadata, IEnumerable<Attribute> attributes)
