@@ -24,13 +24,11 @@ namespace Imageshop.Optimizely.Plugin.Extensions
             bool initializeTinyMCEPlugin = ImageshopConfigurationSection.Settings.InitializeTinyMCEPlugin;
             if (initializeTinyMCEPlugin)
             {
-                var pluginVersion = ImageshopPluginHelper.GetPluginAssemblyVersion();
-
                 services.Configure<TinyMceConfiguration>(config =>
                 {
                     config.Default()
                         .AddEpiserverSupport()
-                        .AddExternalPlugin("imageshopoptimizelyplugin", $"../../../../../modules/Imageshop.Optimizely.Plugin/{pluginVersion}/ClientResources/tinymce/editor_plugin.js")
+                        .AddExternalPlugin("imageshopoptimizelyplugin", EPiServer.Shell.Paths.ToClientResource(ImageshopPluginHelper.GetPluginAssemblyName(), "ClientResources/tinymce/editor_plugin.js"))
                         .AppendToolbar("imageshopoptimizelyplugin");
                 });
             }

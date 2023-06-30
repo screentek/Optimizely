@@ -10,6 +10,11 @@ namespace Imageshop.Optimizely.Plugin.Helpers
             return GetPluginAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
         }
 
+        public static string GetPluginAssemblyName()
+        {
+            return GetPluginAssembly().GetName().Name;
+        }
+
         private static Assembly GetPluginAssembly()
         {
             // Get the directory path of the current assembly
