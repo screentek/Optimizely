@@ -1,4 +1,5 @@
 # Imageshop.Optimizely.Plugin
+
 [![Platform](https://img.shields.io/badge/Platform-.NET%206.0-blue.svg?style=flat)](https://msdn.microsoft.com/en-us/library/w0x726c2%28v=vs.110%29.aspx)
 [![Platform](https://img.shields.io/badge/Optimizely-%2012.8.0-blue.svg?style=flat)](https://www.optimizely.com/products/content)
 Github repository: https://github.com/screentek/Optimizely
@@ -82,7 +83,7 @@ After the package is successfully installed you need to add your access token to
 ### Render the image property in a view:
 
     @Html.PropertyFor(m => m.CurrentPage.MainImage)
-    
+
 ### Image collection property:
 
     [Display(Name = "Bilder")]
@@ -93,18 +94,18 @@ After the package is successfully installed you need to add your access token to
 
 ### Imageshop video property:
 
-	[BackingType(typeof(PropertyImageshopVideo))]
-	public virtual ImageshopVideo MainVideo { get; set; }
+    [BackingType(typeof(PropertyImageshopVideo))]
+    public virtual ImageshopVideo MainVideo { get; set; }
 
 ### Render the video property in a view:
 
-	@Html.PropertyFor(m => m.CurrentPage.MainVideo)
+    @Html.PropertyFor(m => m.CurrentPage.MainVideo)
 
 ### Imageshop video collection property:
 
-	[BackingType(typeof(PropertyImageshopVideoCollection))]
+    [BackingType(typeof(PropertyImageshopVideoCollection))]
     [UIHint(ImageshopSettings.UIHint.ImageshopVideoCollection)]
-	public virtual IEnumerable<ImageshopVideo> Videos { get; set; }
+    public virtual IEnumerable<ImageshopVideo> Videos { get; set; }
 
 ## TinyMCE
 
@@ -112,17 +113,17 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 
 ## Configuration
 
-| Parameter		      		| Type       | Description                                                                      	|
-| ------------------------- | ---------- | ------------------------------------------------------------------------------------ |
-| baseUrl        			| string     | Base URL to Imageshop client. Default is https://client.imageshop.no/InsertImage2.aspx |
-| token          			| string     | Token identifying the user.                                                      	|
-| interfaceName  			| string     | Standard interface used when searching images.                                  		|
-| documentPrefix 			| string     | Standard document code prefix used when uploading images.                        	|
-| culture        			| string     | Language for the client. Supports en-US and nb-NO. Norwegian is default (nb-NO). 	|
-| showSizeDialog 			| true/false | Indicates whether the size dialogue should be shown. Default is true.            	|
-| showCropDialog		 	| true/false | Indicates whether the crop dialogue should be show. Default is true.             	|
-| initializeTinyMCEPlugin	| true/false | Indicates whether the tinymce plugin should be initialized.					            |
-| sizePresets				| string     | String in the format <Size name 1>;<width1>x<height1>:<Size name 2>;<width2>x<height2>... Predefined sizes the user can choose from.	|
+| Parameter               | Type       | Description                                                                                                                          |
+| ----------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| baseUrl                 | string     | Base URL to Imageshop client. Default is https://client.imageshop.no/InsertImage2.aspx                                               |
+| token                   | string     | Token identifying the user.                                                                                                          |
+| interfaceName           | string     | Standard interface used when searching images.                                                                                       |
+| documentPrefix          | string     | Standard document code prefix used when uploading images.                                                                            |
+| culture                 | string     | Language for the client. Supports en-US and nb-NO. Norwegian is default (nb-NO).                                                     |
+| showSizeDialog          | true/false | Indicates whether the size dialogue should be shown. Default is true.                                                                |
+| showCropDialog          | true/false | Indicates whether the crop dialogue should be show. Default is true.                                                                 |
+| initializeTinyMCEPlugin | true/false | Indicates whether the tinymce plugin should be initialized.                                                                          |
+| sizePresets             | string     | String in the format <Size name 1>;<width1>x<height1>:<Size name 2>;<width2>x<height2>... Predefined sizes the user can choose from. |
 
 See configuration section GetaEpiImageshop in appSettings.json for examples.
 
@@ -140,12 +141,12 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 
 ## Changelog
 
-- **v1.2.0**: Refactoring: The majority of the plugin files have been relocated to the modules/Imageshop.Optimizely.Plugin directory, instead of directly being copied into your project structure. Module.config file is also located inside the modules folder, so you are no longer needed to manually create this file. Please note that the settings section inside your appsettings.json has been renamed to ImageshopOptimizelyPlugin. If you encounter any issues, please refer to the updated installation guide on GitHub for assistance.
-- **v1.1.1**: Solved bug where the files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.
-- **v1.1.0**: Images inserted to TinyMCE now contains additional data. Popup window for TinyMCE no longer automatically closing after a few seconds.
-- **v1.0.41**: Bugfixes: Settings can now be read from appsettings.<environment>.json files with fallback on appsettings.json, In tinymce we have added increased support for linux systems (case sensitivity for files), added additional close button to tinymce popup window, fixed bug where the source of the popup window sometimes was undefined.
-- **v1.0.40**: Bugfixes: Images now display alt-text correctly and added some useful comments on view files for models.
-- **v1.0.39**: Updated plugin to support TinyMCE v5 and newer. Bugfix: Missing images are now included when building your project.
-- **v1.0.38**: ImageshopImage model has now been updated to contain InterfaceList for the selected image.
-- **v1.0.37**: ImageshopImage model has now been updated to contain profiles for the selected image.
-- **v1.0.36**: On install: Files will be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes
+- **v1.2.0** (26.06.23): Refactoring: The majority of the plugin files have been relocated to the modules/Imageshop.Optimizely.Plugin directory, instead of directly being copied into your project structure. Module.config file is also located inside the modules folder, so you are no longer needed to manually create this file. Please note that the settings section inside your appsettings.json has been renamed to ImageshopOptimizelyPlugin. If you encounter any issues, please refer to the updated installation guide on GitHub for assistance.
+- **v1.1.1** (16.06.23): Solved bug where the files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.
+- **v1.1.0** (15.06.23): Images inserted to TinyMCE now contains additional data. Popup window for TinyMCE no longer automatically closing after a few seconds.
+- **v1.0.41** (08.06.23): Bugfixes: Settings can now be read from appsettings.<environment>.json files with fallback on appsettings.json, In tinymce we have added increased support for linux systems (case sensitivity for files), added additional close button to tinymce popup window, fixed bug where the source of the popup window sometimes was undefined.
+- **v1.0.40** (22.03.23): Bugfixes: Images now display alt-text correctly and added some useful comments on view files for models.
+- **v1.0.39** (17.03.23): Updated plugin to support TinyMCE v5 and newer. Bugfix: Missing images are now included when building your project.
+- **v1.0.38** (23.01.23): ImageshopImage model has now been updated to contain InterfaceList for the selected image.
+- **v1.0.37** (16.01.23): ImageshopImage model has now been updated to contain profiles for the selected image.
+- **v1.0.36** (12.01.23): On install: Files will be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes
