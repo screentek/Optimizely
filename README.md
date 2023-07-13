@@ -141,12 +141,12 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 
 ## Changelog
 
-- **v1.2.0** (26.06.23): Refactoring: The majority of the plugin files have been relocated to the modules/Imageshop.Optimizely.Plugin directory, instead of directly being copied into your project structure. Module.config file is also located inside the modules folder, so you are no longer needed to manually create this file. Please note that the settings section inside your appsettings.json has been renamed to ImageshopOptimizelyPlugin. If you encounter any issues, please refer to the updated installation guide on GitHub for assistance.
-- **v1.1.1** (16.06.23): Solved bug where the files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.
-- **v1.1.0** (15.06.23): Images inserted to TinyMCE now contains additional data. Popup window for TinyMCE no longer automatically closing after a few seconds.
-- **v1.0.41** (08.06.23): Bugfixes: Settings can now be read from appsettings.<environment>.json files with fallback on appsettings.json, In tinymce we have added increased support for linux systems (case sensitivity for files), added additional close button to tinymce popup window, fixed bug where the source of the popup window sometimes was undefined.
-- **v1.0.40** (22.03.23): Bugfixes: Images now display alt-text correctly and added some useful comments on view files for models.
-- **v1.0.39** (17.03.23): Updated plugin to support TinyMCE v5 and newer. Bugfix: Missing images are now included when building your project.
-- **v1.0.38** (23.01.23): ImageshopImage model has now been updated to contain InterfaceList for the selected image.
-- **v1.0.37** (16.01.23): ImageshopImage model has now been updated to contain profiles for the selected image.
-- **v1.0.36** (12.01.23): On install: Files will be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes
+- **v1.2.0** _(26.06.23)_: Refactoring: The majority of the plugin files have been relocated to the modules/Imageshop.Optimizely.Plugin directory, instead of directly being copied into your project structure. Module.config file is also located inside the modules folder, so you are no longer needed to manually create this file. Please note that the settings section inside your appsettings.json has been renamed to ImageshopOptimizelyPlugin. If you encounter any issues, please refer to the updated installation guide on GitHub for assistance.
+- **v1.1.1** _(16.06.23)_: Solved bug where the files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.
+- **v1.1.0** _(15.06.23)_: Images inserted to TinyMCE now contains additional data. Popup window for TinyMCE no longer automatically closing after a few seconds.
+- **v1.0.41** _(08.06.23)_: Bugfixes: Settings can now be read from appsettings.<environment>.json files with fallback on appsettings.json, In tinymce we have added increased support for linux systems (case sensitivity for files), added additional close button to tinymce popup window, fixed bug where the source of the popup window sometimes was undefined.
+- **v1.0.40** _(22.03.23)_: Bugfixes: Images now display alt-text correctly and added some useful comments on view files for models.
+- **v1.0.39** _(17.03.23)_: Updated plugin to support TinyMCE v5 and newer. Bugfix: Missing images are now included when building your project.
+- **v1.0.38** _(23.01.23)_: ImageshopImage model has now been updated to contain InterfaceList for the selected image.
+- **v1.0.37** _(16.01.23)_: ImageshopImage model has now been updated to contain profiles for the selected image.
+- **v1.0.36** _(12.01.23)_: On install: Files will be copied if modified (date + filesize), viewfiles will be copied if newer modified date (filesize ignored). + Bugfixes
