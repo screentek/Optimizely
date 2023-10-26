@@ -13,7 +13,7 @@
         <copyright>Copyright © Imageshop.no</copyright>
         <tags>Episerver, Optimizely, Imageshop</tags>
         <readme>docs\README.md</readme>
-        <releaseNotes>v1.1.1: Solved bug where the files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.</releaseNotes>
+        <releaseNotes>v1.2.1: Refactoring: We've relocated module files from the "modules" directory to "modules/_protected." Additionally, we've resolved a bug that was causing the inclusion of unwanted files from other modules in the project. Identified the problem that prevented module files from being included during project publishing (to azure, local folder etc), resulting in missing file errors. You'll find an updated guide in the readme file with a solution to this issue.</releaseNotes>
         <dependencies>
           <dependency id="EPiServer.CMS" version="12.8.0" />
         </dependencies>
