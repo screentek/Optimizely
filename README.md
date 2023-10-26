@@ -64,6 +64,26 @@ After the package is successfully installed you need to add your access token to
 
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/config.png)
 
+#### 4. Publishing your project
+
+Before publishing your project, you will need to mark the module zip file called Imageshop.Optimizely.Plugin.zip with "Copy to output directory" to "Copy if newer".
+This can be done in visual studio, or you can add additional code to your .csproj file.
+
+Add the following code to your .csproj file at the bottom of the file, before the ending </Project> tag:
+```
+<ItemGroup>
+    <None Update="modules\_protected\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+```
+![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/csproj_addition.png)
+
+**Or** do the following action in Visual studio:
+![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/mark_zipfile.png)
+
+> **Note**: My marking the zip file with "Copy to output directory" to "Copy if newer", Visual studio is adding additional code to your .csproj file.
+
 ## Basics
 
 ### Add an Imageshop image property to your content model:
