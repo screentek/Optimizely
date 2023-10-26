@@ -75,9 +75,9 @@ To add the necessary code to your .csproj file, follow these steps:
 ```
 <ItemGroup>
     <None Update="modules\_protected\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
+</ItemGroup>
 ```
 
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/csproj_addition.png)
