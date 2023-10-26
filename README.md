@@ -66,10 +66,12 @@ After the package is successfully installed you need to add your access token to
 
 #### 4. Publishing your project
 
-Before publishing your project, you will need to mark the module zip file called Imageshop.Optimizely.Plugin.zip with "Copy to output directory" to "Copy if newer".
-This can be done in visual studio, or you can add additional code to your .csproj file.
+Before publishing your project, ensure that you mark the module zip file named Imageshop.Optimizely.Plugin.zip with the "Copy to output directory" set to "Copy if newer." 
+This can be done using Visual Studio, or you can add additional code to your .csproj file.
 
-Add the following code to your .csproj file at the bottom of the file, before the ending </Project> tag:
+To add the necessary code to your .csproj file, follow these steps:
+1. Open your .csproj file.
+2. Add the following code at the bottom of the file, just before the closing </Project> tag:
 ```
 <ItemGroup>
     <None Update="modules\_protected\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip">
@@ -77,12 +79,11 @@ Add the following code to your .csproj file at the bottom of the file, before th
     </None>
   </ItemGroup>
 ```
+
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/csproj_addition.png)
 
-**Or** do the following action in Visual studio:
+**Or** you can perform this action directly in Visual Studio, which will automatically add the code mentioned above to your .csproj file Select the Imageshop.Optimizely.Plugin.zip file and choose the option "Copy if never":
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/mark_zipfile.png)
-
-> **Note**: My marking the zip file with "Copy to output directory" to "Copy if newer", Visual studio is adding additional code to your .csproj file.
 
 ## Basics
 
@@ -161,6 +162,7 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 
 ## Changelog
 
+- **v1.2.1** _(26.10.03)_: Refactoring: We've relocated module files from the "modules" directory to "modules/_protected." Additionally, we've resolved a bug that was causing the inclusion of unwanted files from other modules in the project. Identified the problem that prevented module files from being included during project publishing (to azure, local folder etc), resulting in missing file errors. You'll find an updated guide in the readme file with a solution to this issue.
 - **v1.2.0** _(26.06.23)_: Refactoring: The majority of the plugin files have been relocated to the modules/Imageshop.Optimizely.Plugin directory, instead of directly being copied into your project structure. Module.config file is also located inside the modules folder, so you are no longer needed to manually create this file. Please note that the settings section inside your appsettings.json has been renamed to ImageshopOptimizelyPlugin. If you encounter any issues, please refer to the updated installation guide on GitHub for assistance.
 - **v1.1.1** _(16.06.23)_: Solved bug where the files from the plugin were not being copied over if the EPiServer.Forms.UI package was also installed.
 - **v1.1.0** _(15.06.23)_: Images inserted to TinyMCE now contains additional data. Popup window for TinyMCE no longer automatically closing after a few seconds.
