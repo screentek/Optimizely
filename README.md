@@ -85,6 +85,8 @@ To add the necessary code to your .csproj file, follow these steps:
 **Or** you can perform this action directly in Visual Studio, which will automatically add the code mentioned above to your .csproj file Select the Imageshop.Optimizely.Plugin.zip file and choose the option "Copy if never":
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/mark_zipfile.png)
 
+Build your project before publishing, and the module files will be included.
+
 ## Basics
 
 ### Add an Imageshop image property to your content model:
