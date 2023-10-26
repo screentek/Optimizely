@@ -61,7 +61,7 @@ define([
                     this.inherited(arguments);
                     this.store = dependency.resolve('epi.storeregistry').get('imageshopstore');
                 } catch (error) {
-                    console.log("Error _imageSelector postCreate: " + error);
+                    //console.log("Error _imageSelector postCreate: " + error);
                 }
             },
 
@@ -81,7 +81,7 @@ define([
                     this.destroyFrame();
                     this.isShowingChildDialog = false;
                 } catch (error) {
-                    console.log("Error _imageSelector closeWindow: " + error);
+                    //console.log("Error _imageSelector closeWindow: " + error);
                 }
             },
 
@@ -121,7 +121,7 @@ define([
                     div.appendChild(innerContainer);
                     root.appendChild(div);
                 } catch (error) {
-                    console.log("Error _imageSelector createFrame: " + error);
+                    //console.log("Error _imageSelector createFrame: " + error);
                 }
             },
 
@@ -130,7 +130,7 @@ define([
                     var container = document.getElementById(this.containerId);
                     container.parentNode.removeChild(container);
                 } catch (error) {
-                    console.log("Error _imageSelector destroyFrame: " + error);
+                    //console.log("Error _imageSelector destroyFrame: " + error);
                 }
             },
 
@@ -154,7 +154,7 @@ define([
                         this.closeWindow();
                     }));
                 } catch (error) {
-                    console.log("Error _imageSelector onMessageReceived: " + error);
+                    //console.log("Error _imageSelector onMessageReceived: " + error);
                 }
             },
 
@@ -172,7 +172,7 @@ define([
 
                     this.createFrame();
                 } catch (error) {
-                    console.log("Error _imageSelector openWindow: " + error);
+                    //console.log("Error _imageSelector openWindow: " + error);
                 }
             },
 
@@ -218,7 +218,7 @@ define([
 
                     window.console && console.log(this.currentImage);
                 } catch (error) {
-                    console.log("Error _imageSelector setBasicImage: " + error);
+                    //console.log("Error _imageSelector setBasicImage: " + error);
                 }
             },
 
@@ -232,7 +232,7 @@ define([
                     this.currentImage.isVideo = data.isVideo;
                     this.currentImage.authorName = data.authorName;
                 } catch (error) {
-                    console.log("Error _imageSelector setExtendedImage: " + error);
+                    //console.log("Error _imageSelector setExtendedImage: " + error);
                 }
             }
         });

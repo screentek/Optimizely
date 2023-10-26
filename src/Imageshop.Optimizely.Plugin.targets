@@ -6,7 +6,9 @@
 
 		<InsertImageViewFile Include="$(MSBuildThisFileDirectory)..\..\content\Views\Imageshop\InsertImage.cshtml"/>
 
-		<ZipFile Include="$(MSBuildThisFileDirectory)..\..\modules\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip"/>
+		<ZipFile Include="$(MSBuildThisFileDirectory)..\..\modules\**\*.zip">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</ZipFile>
 	</ItemGroup>
 
 	<Target Name="ImageshopCopyModuleFilesOnBuild" BeforeTargets="Build">
@@ -29,12 +31,6 @@
 		
 		<Copy
             SourceFiles="@(ZipFile)"
-            DestinationFolder="$(MSBuildProjectDirectory)\modules\Imageshop.Optimizely.Plugin\" />
-	</Target>
-
-	<Target Name="ImageshopCopyModuleFilesAfterBuild" AfterTargets="Build">
-		<!-- Clean-up after build -->
-		<Delete Files="$(MSBuildProjectDirectory)\modules\_protected\Imageshop.Optimizely.Plugin.zip" />
-		<Delete Files="$(MSBuildProjectDirectory)\modules\Imageshop.Optimizely.Plugin\EPiServer.Forms.UI.zip" />
+            DestinationFolder="$(MSBuildProjectDirectory)\modules\_protected\%(RecursiveDir)" />
 	</Target>
 </Project>

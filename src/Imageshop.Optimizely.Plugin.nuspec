@@ -27,6 +27,6 @@
 		<file src="PropertyViewFiles\ImageshopImage.cshtml" target="content\Views\Shared\DisplayTemplates\" />
 		<file src="PropertyViewFiles\ImageshopVideo.cshtml" target="content\Views\Shared\DisplayTemplates\" />
 		
-		<file src="ZippedFiles\Imageshop.Optimizely.Plugin.zip" target="modules\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip" />
+		<file src="ZippedFiles\Imageshop.Optimizely.Plugin.zip" target="modules\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip" copyToOutput="PreserveNewest" />
 	</files>
 </package>

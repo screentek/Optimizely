@@ -14,7 +14,7 @@ namespace Imageshop.Optimizely.Plugin.Extensions
         {
             var executingAssembliy = Assembly.GetExecutingAssembly();
 
-            services.Configure<PublicModuleOptions>(o => o.Items.Add(new ModuleDetails { Name = "Imageshop.Optimizely.Plugin" }));
+            services.Configure<ProtectedModuleOptions>(o => o.Items.Add(new ModuleDetails { Name = "Imageshop.Optimizely.Plugin" }));
 
             return services.Configure<IMvcBuilder>(x => x.AddApplicationPart(executingAssembliy));
         }
