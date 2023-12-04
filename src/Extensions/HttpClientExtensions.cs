@@ -4,6 +4,9 @@ using System.Xml.Serialization;
 
 namespace Imageshop.Optimizely.Plugin.Extensions
 {
+    /// <summary>
+    /// Static class used by the WebServiceWrapper to perform API calls towards the Imageshop API.
+    /// </summary>
     public static class HttpClientExtensions
     {
         public static async Task<T> ExecuteAsync<T>(this HttpClient client, HttpRequestMessage request)

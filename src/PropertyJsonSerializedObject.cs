@@ -5,6 +5,9 @@ using System;
 
 namespace Imageshop.Optimizely.Plugin
 {
+    /// <summary>
+    /// Abstract class to serialize objects
+    /// </summary>
     public abstract class PropertyJsonSerializedObject<T> : PropertyLongString where T : class
     {
         protected T _value;

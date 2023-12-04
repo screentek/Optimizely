@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
+// Update the version number below in both AssemblyVersion and AssemblyFileVersion before publishing an update of the plugin
+// Before publishing a new version, you should also update the version number in the Imageshop.Optimizely.Plugin.nuspec file. These version numbers should be identical.
 [assembly: AssemblyVersion("1.2.1")]
 [assembly: AssemblyFileVersion("1.2.1")]

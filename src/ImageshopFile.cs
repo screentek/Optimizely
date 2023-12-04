@@ -2,6 +2,9 @@ using System;
 
 namespace Imageshop.Optimizely.Plugin
 {
+    /// <summary>
+    /// Property type for files
+    /// </summary>
     public class ImageshopFile
     {
         public ImageshopFile()

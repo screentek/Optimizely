@@ -2,6 +2,9 @@
 
 namespace Imageshop.Optimizely.Plugin.Extensions
 {
+    /// <summary>
+    /// Extension class for String to decode and encode text input
+    /// </summary>
     public static class StringExtensions
     {
         public static string UrlEncode(this string input)

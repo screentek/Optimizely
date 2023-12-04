@@ -3,6 +3,10 @@ using System.Reflection;
 
 namespace Imageshop.Optimizely.Plugin.Helpers
 {
+    /// <summary>
+    /// Class to receive information about the Imageshop plugin.
+    /// This class can be used from within a project that has the plugin installed.
+    /// </summary>
     public static class ImageshopPluginHelper
     {
         public static string GetPluginAssemblyVersion()
