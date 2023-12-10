@@ -12,7 +12,8 @@ namespace Imageshop.Optimizely.Plugin.Controllers
     [RestStore("imageshopstore")]
     [Authorize(Roles = "WebAdmins, Administrators, WebEditors, CmsAdmins, CmsEditors")]
     /// <summary>
-    ///  Controller used to retrieve extended metadata view in popup for TinyMCE to Imageshop
+    ///  Controller used to retrieve extended metadata view in dialog windows.
+    ///  The ImageshopStore is registered in the inititializer specified in the module.config file.
     ///  This controller is restricted to the following roles: "WebAdmins, Administrators, WebEditors, CmsAdmins, CmsEditors"
     /// </summary>
     public class ImageshopStore : RestControllerBase

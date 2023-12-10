@@ -6,6 +6,9 @@ using System.IO;
 
 namespace Imageshop.Optimizely.Plugin.Configuration
 {
+    /// <summary>
+    /// Class for receiving settings read from the appsettings.json file.
+    /// </summary>
     public static class ImageshopConfigurationSection
     {
         private static ImageshopSettings _settings;

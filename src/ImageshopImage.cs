@@ -2,6 +2,9 @@
 
 namespace Imageshop.Optimizely.Plugin
 {
+    /// <summary>
+    /// Property type that contains metadata, permalink and additional data for an image in Imageshop.
+    /// </summary>
     public class ImageshopImage : ImageshopFile
     {
         public virtual int Width { get; set; }
@@ -21,18 +24,27 @@ namespace Imageshop.Optimizely.Plugin
         }
     }
 
+    /// <summary>
+    /// Contains ID and name of an interface than an ImageshopImage is connected to
+    /// </summary>
     public class ImageshopInterfaceInfo
     {
         public virtual int InterfaceID { get; set; }
         public virtual string InterfaceName { get; set; }
     }
 
+    /// <summary>
+    /// Profile information for an ImageshopImage
+    /// </summary>
     public class ImageshopImageProfile
     {
         public virtual string Name { get; set; }
         public virtual IEnumerable<ImageshopImageProfileSize> ProfileSizes { get; set; } 
     }
 
+    /// <summary>
+    /// Profile sizes for a profile connected to an ImageshopImage
+    /// </summary>
     public class ImageshopImageProfileSize
     {
         public virtual string Url { get; set; }

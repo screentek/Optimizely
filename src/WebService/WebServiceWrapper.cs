@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace Imageshop.Optimizely.Plugin.WebService
 {
+    /// <summary>
+    /// A wrapper class to perform API calls towards the Imageshop API.
+    /// This class is used in the ImageshopStore controller to receive necessary information about the selected content before opening the Imageshop client in TinyMCE.
+    /// </summary>
     public class WebServiceWrapper : HttpClient
     {
         private readonly string _webServiceUrl;

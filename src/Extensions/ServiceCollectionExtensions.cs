@@ -8,8 +8,15 @@ using System.Reflection;
 
 namespace Imageshop.Optimizely.Plugin.Extensions
 {
+    /// <summary>
+    /// Static class that is called from within the executing assembly. This is used during startup of projects to enable the Imageshop Plugin.
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Typically called from the Startup.cs file of the project that has the plugin installed. 
+        /// Registers the plugin as a protected module.
+        /// </summary>
         public static IServiceCollection AddImageShopRegistration(this IServiceCollection services)
         {
             var executingAssembliy = Assembly.GetExecutingAssembly();
@@ -19,6 +26,10 @@ namespace Imageshop.Optimizely.Plugin.Extensions
             return services.Configure<IMvcBuilder>(x => x.AddApplicationPart(executingAssembliy));
         }
 
+        /// <summary>
+        /// Typically called from the Startup.cs file of the project that has the plugin installed.
+        /// Enables the Imageshop Plugin for TinyMCE. 
+        /// </summary>
         public static IServiceCollection AddImageshopTinyMceConfiguration(this IServiceCollection services)
         {
             bool initializeTinyMCEPlugin = ImageshopConfigurationSection.Settings.InitializeTinyMCEPlugin;
