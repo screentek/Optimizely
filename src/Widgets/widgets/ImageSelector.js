@@ -32,7 +32,7 @@
             value: null,
 
             //
-            // Life cycle
+            // Life cycle.
             //
 
             postCreate: function () {
