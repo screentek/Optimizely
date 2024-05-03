@@ -1,0 +1,22 @@
+name: "Dependency Vulnerability Check"
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  depchecktest:
+    name: analyze
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+
+    - name: Check Dependencies
+      uses: mawosoft/dotnet-dependency-alert@v1
