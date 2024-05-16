@@ -36,6 +36,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
 
             builder.AddJsonFile("appSettings.json", optional: true);
             builder.AddJsonFile("appsettings.json", optional: true);
+            builder.AddEnvironmentVariables();
 
             var configuration = builder.Build();
             var settingsSection = configuration.GetSection("ImageshopOptimizelyPlugin:Settings");
