@@ -10,6 +10,7 @@ namespace Imageshop.Optimizely.Plugin
         public virtual int Width { get; set; }
         public virtual int Height { get; set; }
         public virtual string CropName { get; set; }
+        public virtual string AltText { get; set; }
         public virtual ImageshopImageProfile Profile { get; set; }
         public virtual IEnumerable<ImageshopInterfaceInfo> InterfaceList { get; set; }
 

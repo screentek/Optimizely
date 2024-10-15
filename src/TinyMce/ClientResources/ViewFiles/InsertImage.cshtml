@@ -117,7 +117,7 @@
                 descriptionobject = JSON.parse(descriptionstring);
                 imgobj = {
                     src: file,
-                    alt: descriptionobject.Description ? descriptionobject.Description : descriptionobject.Name,
+                    alt: descriptionobject.AltText ? descriptionobject.AltText : descriptionobject.Description ? descriptionobject.Description : descriptionobject.Name,
                     border: null,
                     'data-credits': descriptionobject.Credits,
                     'data-authorName': descriptionobject.AuthorName,

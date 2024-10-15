@@ -5,5 +5,5 @@
 *@
 @if (Model != null && !string.IsNullOrWhiteSpace(Model.Url))
 {
-    <img src="@Model.Url" alt="@(Model.Description ?? string.Empty)">
+    <img src="@Model.Url" alt="@(Model.AltText ?? Model.Description ?? Model.Name ?? string.Empty)">
 }
