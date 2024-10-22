@@ -25,7 +25,8 @@ tinymce.PluginManager.add("imageshopoptimizelyplugin", function (ed, url) {
     var buttonText = "";
     var buttonIcon = url + "/images/icon.png";
     var controllerPath = "/imageshoptinymce/insertimage/";
-    var dialogUrl = hostUrl + controllerPath + "?TINYMCE=true&TINYMCEEXTENDED=true";
+    //var pluginpath = dojoConfig.paths["imageshop-optimizely-plugin"];
+    var dialogUrl = hostUrl + controllerPath + "?TINYMCE=true&TINYMCEEXTENDED=true&lang=" + epi.dependency.resolve("epi.shell.ContextService").currentContext.language;//or epi.dependency.resolve("epi.cms.contentEditing.command.Editing").model.languageContext.language; 
 
     if (tinymce.majorVersion >= 5) {
         // Register icon for Imageshop
@@ -127,7 +128,7 @@ tinymce.PluginManager.add("imageshopoptimizelyplugin", function (ed, url) {
             return {
                 name: "Imageshop image plugin",
                 url: "https://github.com/screentek/Optimizely",
-                author: 'Geta AS, Bouvet ASA, Imageshop, tinymce ' + tinymce.majorVersion + '.' + tinymce.minorVersion,
+                author: 'Geta AS, Bouvet ASA, Epinova AB, Imageshop, tinymce ' + tinymce.majorVersion + '.' + tinymce.minorVersion,
                 authorurl: 'https://github.com/screentek/Optimizely',
                 infourl: 'https://github.com/screentek/Optimizely',
                 version: tinymce.majorVersion + "." + tinymce.minorVersion
