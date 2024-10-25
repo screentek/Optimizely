@@ -164,6 +164,7 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 
 ## Changelog
 
+- **v1.2.5** _(23.10.24)_: Added AltText before Description when display image on site + AddEnvironmentVariables (overrides appsettings in Azure)
 - **v1.2.2** _(10.12.23)_: Additional code documentation and a bugfix for linux servers where first character of filename had to be uppercase. Renamed 'imageSelector' to 'ImageSelector'.
 - **v1.2.1** _(26.10.23)_: Refactoring: We've relocated module files from the "modules" directory to "modules/\_protected." Additionally, we've resolved a bug that was causing the inclusion of unwanted files from other modules in the project. Identified the problem that prevented module files from being included during project publishing (to azure, local folder etc), resulting in missing file errors. You'll find an updated guide in the readme file with a solution to this issue.
 - **v1.2.0** _(26.06.23)_: Refactoring: The majority of the plugin files have been relocated to the modules/Imageshop.Optimizely.Plugin directory, instead of directly being copied into your project structure. Module.config file is also located inside the modules folder, so you are no longer needed to manually create this file. Please note that the settings section inside your appsettings.json has been renamed to ImageshopOptimizelyPlugin. If you encounter any issues, please refer to the updated installation guide on GitHub for assistance.
