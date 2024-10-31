@@ -42,7 +42,6 @@ namespace Imageshop.Optimizely.Plugin.UrlBuilders
             string token = ImageshopConfigurationSection.Settings.Token!;
             string interfaceName = ImageshopConfigurationSection.Settings.InterfaceName!;
             string documentPrefix = ImageshopConfigurationSection.Settings.DocumentPrefix!;
-            string culture = ImageshopConfigurationSection.Settings.Culture!;
             string profileId = ImageshopConfigurationSection.Settings.ProfileID!;
             bool showSizeDialog = ImageshopConfigurationSection.Settings.ShowSizeDialog;
             bool showCropDialog = ImageshopConfigurationSection.Settings.ShowCropDialog;
@@ -65,11 +64,6 @@ namespace Imageshop.Optimizely.Plugin.UrlBuilders
                 if (string.IsNullOrWhiteSpace(configurationAttribute.DocumentPrefix) == false)
                 {
                     documentPrefix = configurationAttribute.DocumentPrefix;
-                }
-
-                if (string.IsNullOrWhiteSpace(configurationAttribute.Culture) == false)
-                {
-                    culture = configurationAttribute.Culture;
                 }
 
                 if (string.IsNullOrWhiteSpace(configurationAttribute.ProfileID) == false)
@@ -108,7 +102,6 @@ namespace Imageshop.Optimizely.Plugin.UrlBuilders
             }
 
             query.AddIfNotNull("IMAGESHOPSIZES", sizePresets);
-            query.AddIfNotNull("CULTURE", culture);
             query.Add("FORMAT", "json");
 
             if (addVideoParameter)

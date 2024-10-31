@@ -98,9 +98,11 @@ define([
                     var ifrm = document.createElement("iframe");
                     var ifrmUrl = this.baseUrl;
 
+                    ifrmUrl += "&CULTURE=" + dojo.locale + "&IMAGESHOPLANGUAGE=" + epi.dependency.resolve("epi.shell.ContextService").currentContext.language;
+
                     if (this.selectCurrentImage && this.currentImage != null && this.currentImage.url) {
                         ifrmUrl += "&IMAGE=" + encodeURI(this.currentImage.url);
-                    }
+                    }                       
 
                     ifrm.setAttribute("src", ifrmUrl);
                     ifrm.setAttribute("id", this.iframeId);

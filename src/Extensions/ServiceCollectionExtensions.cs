@@ -1,9 +1,9 @@
 ﻿using EPiServer.Cms.TinyMce.Core;
+using EPiServer.Shell;
 using EPiServer.Shell.Modules;
 using Imageshop.Optimizely.Plugin.Configuration;
 using Imageshop.Optimizely.Plugin.Helpers;
 using Microsoft.Extensions.DependencyInjection;
-using System.IO;
 using System.Reflection;
 
 namespace Imageshop.Optimizely.Plugin.Extensions
@@ -32,18 +32,47 @@ namespace Imageshop.Optimizely.Plugin.Extensions
         /// </summary>
         public static IServiceCollection AddImageshopTinyMceConfiguration(this IServiceCollection services)
         {
-            bool initializeTinyMCEPlugin = ImageshopConfigurationSection.Settings.InitializeTinyMCEPlugin;
-            if (initializeTinyMCEPlugin)
+            if (ImageshopConfigurationSection.Settings.InitializeTinyMCEPlugin)
             {
-                services.Configure<TinyMceConfiguration>(config =>
-                {
+                services.PostConfigure<TinyMceConfiguration>(config =>
                     config.Default()
-                        .AddEpiserverSupport()
-                        .AddExternalPlugin("imageshopoptimizelyplugin", EPiServer.Shell.Paths.ToClientResource(ImageshopPluginHelper.GetPluginAssemblyName(), "ClientResources/tinymce/editor_plugin.js"))
-                        .AppendToolbar("imageshopoptimizelyplugin");
-                });
-            }
+                    .AddImageshopToTinyMCE());
+            } 
             return services;
+        }
+
+        /// <summary>
+        /// Enables the Imageshop Plugin for TinyMCE for custom TinyMCEs
+        /// </summary>
+        /// <param name="tinySettings"></param>
+        /// <returns></returns>
+        public static TinyMceSettings AddImageshopToTinyMCE(this TinyMceSettings tinySettings, bool addToToolbar = true)
+        {
+            tinySettings.AddExternalPlugin("imageshopoptimizelyplugin", Paths.ToClientResource(ImageshopPluginHelper.GetPluginAssemblyName(), "ClientResources/tinymce/editor_plugin.js"));
+
+            if (addToToolbar)
+            {
+                bool exists = false;
+
+                string[] toolbarStrings = (tinySettings["toolbar"] as string[]);
+
+                if (toolbarStrings?.Length > 0)
+                {
+                    if (toolbarStrings[0].Contains(" image "))
+                    {
+                        var toolbar = toolbarStrings[0].Replace(" image ", " imageshopoptimizelyplugin image ");
+                        toolbarStrings[0] = toolbar;
+                        exists = true;
+                    }
+                }
+
+                if (!exists)
+                {
+                    tinySettings.AppendToolbar("imageshopoptimizelyplugin");
+                }
+            }
+
+            return tinySettings;
         }
     }
 }
