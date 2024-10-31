@@ -21,6 +21,7 @@ namespace Imageshop.Optimizely.Plugin.Attributes
         [Description("Standard document code prefix used when uploading images.")]
         public string DocumentPrefix { get; set; }
 
+        [Obsolete("This is not in use, it will use the page context language dynamically")]
         [Description("Culture (en-US and nb-NO supported). Default is nb-NO.")]
         public string Culture { get; set; }
 

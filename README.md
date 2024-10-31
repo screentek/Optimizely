@@ -32,6 +32,12 @@ Second line can be added later on:
 
     services.AddImageshopTinyMceConfiguration()
 
+Or in if you rather add this to your TinyMCE config (can be used for custom tinyMCE configs): 
+
+     services.PostConfigure<TinyMceConfiguration>(config =>
+            config.Default()
+             .AddImageshopToTinyMCE()); <---
+
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/installation1.png)
 
 If you have problems with routes that causes the client to not load, you can add this to your Configure method, app.UseEndpoints, in startup.cs:
@@ -50,7 +56,6 @@ After the package is successfully installed you need to add your access token to
             "token": "<Token here>",
             "interfaceName": "",
             "documentPrefix": "Warning",
-            "culture": "nb-NO",
             "profileId": "",
             "showSizeDialog": "true",
             "showCropDialog": "true",
@@ -134,6 +139,12 @@ Build your project before publishing, and the module files will be included.
 
 A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlString properties. It's located in the "media" group.
 
+for custom TinyMCE configurations use .AddImageshopToTinyMCE() to TinyMceSettings and customize placement of "imageshopoptimizelyplugin" into a toolbar
+
+     services.PostConfigure<TinyMceConfiguration>(config =>
+            config.Default()
+             .AddImageshopToTinyMCE()); <---
+
 ## Configuration
 
 | Parameter               | Type       | Description                                                                                                                          |
@@ -148,7 +159,7 @@ A TinyMCE plugin is included for browsing Imageshop images to add to your XhtmlS
 | initializeTinyMCEPlugin | true/false | Indicates whether the tinymce plugin should be initialized.                                                                          |
 | sizePresets             | string     | String in the format <Size name 1>;<width1>x<height1>:<Size name 2>;<width2>x<height2>... Predefined sizes the user can choose from. |
 
-See configuration section GetaEpiImageshop in appSettings.json for examples.
+See configuration section ImageshopOptimizelyPlugin in appSettings.json for examples.
 
 ## Support
 
@@ -164,6 +175,8 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 
 ## Changelog
 
+
+- **v1.2.6** _(31.10.24)_: Localization in Picker, it now uses the context language of import of AltText and other props + new logo in tinymce 
 - **v1.2.5** _(23.10.24)_: Added AltText before Description when display image on site + AddEnvironmentVariables (overrides appsettings in Azure)
 - **v1.2.2** _(10.12.23)_: Additional code documentation and a bugfix for linux servers where first character of filename had to be uppercase. Renamed 'imageSelector' to 'ImageSelector'.
 - **v1.2.1** _(26.10.23)_: Refactoring: We've relocated module files from the "modules" directory to "modules/\_protected." Additionally, we've resolved a bug that was causing the inclusion of unwanted files from other modules in the project. Identified the problem that prevented module files from being included during project publishing (to azure, local folder etc), resulting in missing file errors. You'll find an updated guide in the readme file with a solution to this issue.
