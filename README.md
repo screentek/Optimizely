@@ -175,7 +175,7 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 
 ## Changelog
 
-
+- **v1.2.6.2** _(10.12.24)_: bugfixes + new latest jquery version 
 - **v1.2.6** _(31.10.24)_: Localization in Picker, it now uses the context language of import of AltText and other props + new logo in tinymce 
 - **v1.2.5** _(23.10.24)_: Added AltText before Description when display image on site + AddEnvironmentVariables (overrides appsettings in Azure)
 - **v1.2.2** _(10.12.23)_: Additional code documentation and a bugfix for linux servers where first character of filename had to be uppercase. Renamed 'imageSelector' to 'ImageSelector'.

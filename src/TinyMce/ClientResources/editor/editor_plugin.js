@@ -42,7 +42,7 @@ tinymce.PluginManager.add("imageshopoptimizelyplugin", function (ed, url) {
                     var currentDialogUrl = dialogUrl;
 
                     if (ed.selection !== null && ed.selection.getNode() !== null && ed.selection.getNode().src !== null)
-                        dialogUrl += "&image=" + encodeURIComponent(ed.selection.getNode().src);
+                        currentDialogUrl += "&image=" + encodeURIComponent(ed.selection.getNode().src);
 
                     tinymce.activeEditor.windowManager.openUrl({
                         title: 'ImageShop',

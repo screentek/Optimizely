@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=10">
 
     <title>Imageshop</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://client.imageshop.no/scripts/tiny_mce_popup.js"></script>
 
     <style type="text/css">
@@ -80,53 +80,56 @@
 
         function listener(event) {
 
-            console.log("Imageshop result:", event.data);
-            try {
-                var imageData = JSON.parse(event.data.split(";")[0]);
-                var textData = imageData.text[getQueryStringParameterByName("lang")];
-                window.console && console.log(imageData);
+            if (event.data) {
+                window.console && console.log("Imageshop result:", event.data);
+                try {
+                    var imageData = JSON.parse(event.data.split(";")[0]);
+                    var lang = getQueryStringParameterByName("IMAGESHOPLANGUAGE") ?? "en";
+                    var textData = imageData.text[lang];
+                    window.console && console.log(imageData);
 
-                var imageProfileData = null;
-                if (imageData.profile) {
-                    imageProfileData = {
-                        name: imageData.profile.name,
-                        profileSizes: imageData.profile.profileSizes
+                    var imageProfileData = null;
+                    if (imageData.profile) {
+                        imageProfileData = {
+                            name: imageData.profile.name,
+                            profileSizes: imageData.profile.profileSizes
+                        }
                     }
+
+                    var currentImage = {
+                        code: imageData.code,
+                        url: imageData.image.file,
+                        width: imageData.image.width,
+                        height: imageData.image.height,
+                        changed: new Date(),
+                        cropName: this.cropName,
+                        profile: imageProfileData,
+                        interfaceList: imageData.InterfaceList
+                    };
+
+                    if (textData) {
+                        currentImage.name = textData.title;
+                        currentImage.credits = textData.credits;
+                        currentImage.description = textData.description;
+                        currentImage.altText = textData.altText;
+                        currentImage.rights = textData.rights;
+                        currentImage.tags = textData.tags;
+                    }
+
+                    if (imageData.videos) {
+                        currentImage.aspectRatio = imageData.aspectratio;
+                        currentImage.videos = imageData.videos;
+                    }
+
+                    window.console && console.log(currentImage);
+
+                    if (currentImage && isNumeric(currentImage.width) && isNumeric(currentImage.height)) {
+                        insert(currentImage);
+                    }
+
+                } catch (error) {
+                    console.error("Error data from Imageshop ", error, event.data);
                 }
-
-                var currentImage = {
-                    code: imageData.code,
-                    url: imageData.image.file,
-                    width: imageData.image.width,
-                    height: imageData.image.height,
-                    changed: new Date(),
-                    cropName: this.cropName,
-                    profile: imageProfileData,
-                    interfaceList: imageData.InterfaceList
-                };
-
-                if (textData) {
-                    currentImage.name = textData.title;
-                    currentImage.credits = textData.credits;
-                    currentImage.description = textData.description;
-                    currentImage.altText = textData.altText;
-                    currentImage.rights = textData.rights;
-                    currentImage.tags = textData.tags;
-                }
-
-                if (imageData.videos) {
-                    currentImage.aspectRatio = imageData.aspectratio;
-                    currentImage.videos = imageData.videos;
-                }
-
-                window.console && console.log(this.currentImage);
-
-                if (currentImage && isNumeric(currentImage.width) && isNumeric(currentImage.height)) {
-                    insert(currentImage);
-                }
-
-            } catch (error) {
-                console.error("Error data from Imageshop ", error, event.data);
             }
         }
 
