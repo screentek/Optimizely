@@ -60,7 +60,7 @@ namespace Imageshop.Optimizely.Plugin.Extensions
                 {
                     if (toolbarStrings[0].Contains(" image "))
                     {
-                        var toolbar = toolbarStrings[0].Replace(" image ", " imageshopoptimizelyplugin image ");
+                        var toolbar = toolbarStrings[0].Replace(" image ", " imageshopoptimizelyplugin imageshopvideo image ");
                         toolbarStrings[0] = toolbar;
                         exists = true;
                     }
@@ -68,7 +68,7 @@ namespace Imageshop.Optimizely.Plugin.Extensions
 
                 if (!exists)
                 {
-                    tinySettings.AppendToolbar("imageshopoptimizelyplugin");
+                    tinySettings.AppendToolbar("imageshopoptimizelyplugin imageshopvideo");
                 }
             }
 

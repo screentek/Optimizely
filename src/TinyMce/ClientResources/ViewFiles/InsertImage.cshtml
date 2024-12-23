@@ -78,9 +78,18 @@
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
 
+        function isString(value) {
+            if (typeof value === 'string') {
+                return true;
+            } 
+
+            return false;
+        }
+
+
         function listener(event) {
 
-            if (event.data) {
+            if (isString(event.data)) {
                 window.console && console.log("Imageshop result:", event.data);
                 try {
                     var imageData = JSON.parse(event.data.split(";")[0]);
@@ -119,6 +128,9 @@
                     if (imageData.videos) {
                         currentImage.aspectRatio = imageData.aspectratio;
                         currentImage.videos = imageData.videos;
+
+                        insertVideo(currentImage);
+                        return;
                     }
 
                     window.console && console.log(currentImage);
@@ -172,6 +184,41 @@
             var imgobj = {
                 src: currentImage.url,
                 alt: currentImage.altText ? currentImage.altText : currentImage.description ? currentImage.description : currentImage.name,
+                border: null,
+                'data-credits': currentImage.credits,
+                'data-authorName': currentImage.authorName,
+                'data-tags': currentImage.tags,
+                'data-name': currentImage.name,
+                'data-description': currentImage.description
+
+            }
+            if (currentImage.height != 0) {
+                imgobj.height = currentImage.height;
+            }
+            if (currentImage.width != 0) {
+                imgobj.width = currentImage.width;
+            }
+
+
+            //not used anymore?
+            // if (alignment != null) {
+            //     imgobj["style"] = "float: " + alignment;
+            // }
+
+            tinyMCEPopup.execCommand('mceInsertContent', false, dom.createHTML('img', imgobj));
+
+            tinyMCEPopup.close();
+
+        }
+
+        function insertVideo(currentImage) {
+
+            var ed = tinyMCEPopup.editor, dom = ed.dom;
+
+            var video = {
+                src: currentImage.videos[0].file,
+                controls: true,
+                title: currentImage.altText ? currentImage.altText : currentImage.description ? currentImage.description : currentImage.name,
                     border: null,
                     'data-credits': currentImage.credits,
                     'data-authorName': currentImage.authorName,
@@ -181,19 +228,13 @@
 
                 }
             if (currentImage.height != 0) {
-                imgobj.height = currentImage.height;
+                video.height = currentImage.height;
             }
             if (currentImage.width != 0) {
-                imgobj.width = currentImage.width;
+                video.width = currentImage.width;
             }
             
-
-            //not used anymore?
-            // if (alignment != null) {
-            //     imgobj["style"] = "float: " + alignment;
-            // }
-
-            tinyMCEPopup.execCommand('mceInsertContent', false, dom.createHTML('img', imgobj));
+            tinyMCEPopup.execCommand('mceInsertContent', false, dom.createHTML('video', video));
 
             tinyMCEPopup.close();
 
