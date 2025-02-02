@@ -6,6 +6,7 @@ using Imageshop.Optimizely.Plugin.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using EPiServer.Logging;
+using EPiServer.Web;
 
 namespace Imageshop.Optimizely.Plugin.Controllers
 {
@@ -49,6 +50,36 @@ namespace Imageshop.Optimizely.Plugin.Controllers
             }
 
             return Rest(null);
+        }
+
+        [HttpGet]
+        [HttpPost]
+        [Route("/imageshopextended/imageshopstore/save")]
+        public ActionResult Save(string url, string adminUrl = null)
+        {
+            try
+            {
+                if (adminUrl == null)
+                    adminUrl = SiteDefinition.Current.SiteUrl.ToString();
+
+                var success = _webServiceWrapper.StorePermaLinkUrlTest(adminUrl, url).Result;
+
+                if (success)
+                {
+                        return Rest(success);
+                }
+                else
+                {
+                    return Rest("Return fail request saving permalinks ImageShop: permalink " + url);
+                }
+            }
+            catch (Exception ex)
+            {
+                var logger = LogManager.GetLogger(typeof(ImageshopStore));
+                logger.Error("Error saving permalinks ImageShop: permalink " + url + ". Message: " + ex.Message);
+
+                return Rest("Error saving permalinks ImageShop: permalink " + url + ". Message: " + ex.Message);
+            }
         }
     }
 }

@@ -43,6 +43,14 @@ namespace Imageshop.Optimizely.Plugin.WebService
             return response;
         }
 
+        public async Task<bool> StorePermaLinkUrlTest(string url, string permalink)
+        {
+            var request = CreateRequest("StorePermaLinkUrlTest");
+            request.AddParameter("url", url);
+            request.AddParameter("permaLink", permalink);
+            return await this.ExecuteAndReturnSuccessAsync(request);
+        }
+
         public HttpRequestMessage CreateRequest(string methodName)
         {
             return CreateRequest(HttpMethod.Get, methodName);

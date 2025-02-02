@@ -18,5 +18,10 @@ namespace Imageshop.Optimizely.Plugin.Extensions
             var data = (T)serializer.Deserialize(resultData);
             return data!;
         }
+        public static async Task<bool> ExecuteAndReturnSuccessAsync(this HttpClient client, HttpRequestMessage request)
+        {
+            HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+            return response.IsSuccessStatusCode;
+        }
     }
 }

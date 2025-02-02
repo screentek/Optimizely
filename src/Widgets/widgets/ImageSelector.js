@@ -26,15 +26,33 @@
             // Public
             //
 
+
+            removeTitle: "Remove Image",
             baseClass: "imageExt",
             store: null,
             templateString: template,
             value: null,
 
+            getCultureText: function () {
+                var cultureTexts = {
+                    "en": "Remove Image",
+                    "fr": "Supprimer l'image",
+                    "es": "Eliminar imagen",
+                    "nb": "Fjern bilde",
+                    "da": "Fjern billede",
+                    "sv": "Ta bort bild"
+                };
+                var currentLocale = dojo.locale.split('-')[0]; // Get the language part
+                return cultureTexts[currentLocale] || cultureTexts["en"];
+            },
+
             //
             // Life cycle.
             //
-
+            buildRendering: function () {
+                this.removeTitle = this.getCultureText();
+                this.inherited(arguments);
+            },
             postCreate: function () {
                 try {
                     this.inherited(arguments);
