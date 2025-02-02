@@ -207,8 +207,22 @@
 
             tinyMCEPopup.execCommand('mceInsertContent', false, dom.createHTML('img', imgobj));
 
-            tinyMCEPopup.close();
+            persistFetch(currentImage.url)
 
+            setTimeout(function() {
+                tinyMCEPopup.close();
+            }, 200);
+
+
+        }
+
+        function persistFetch(url) {
+            var getUrl = '/imageshopextended/imageshopstore/save?url=' + encodeURIComponent(url) + '&adminUrl=' + encodeURIComponent(document.location.origin);
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(getUrl);
+            } else {
+                fetch(getUrl);
+            }
         }
 
         function insertVideo(currentImage) {
@@ -236,7 +250,11 @@
             
             tinyMCEPopup.execCommand('mceInsertContent', false, dom.createHTML('video', video));
 
-            tinyMCEPopup.close();
+            persistFetch(video.src);
+
+            setTimeout(function () {
+                tinyMCEPopup.close();
+            }, 200);
 
         }
 

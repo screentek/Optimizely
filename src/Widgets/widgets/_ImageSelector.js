@@ -140,7 +140,7 @@ define([
             },
 
             onMessageReceived: function (event) {
-                try {
+                try { 
                     this.setBasicImage(event.data);
 
                     xhr.get(this.store.target + '?permalink=' + encodeURIComponent(this.currentImage.url), {
@@ -155,6 +155,11 @@ define([
                         this.onImageSelected(this.currentImage);
                         this.closeWindow();
                     }));
+
+                    //save where it is used
+                    xhr.get(this.store.target + 'save?url=' + encodeURIComponent(this.currentImage.url) + '&adminUrl=' + encodeURIComponent(document.location.href), {
+                        handleAs: 'json'
+                    })
                 } catch (error) {
                     //console.log("Error _imageSelector onMessageReceived: " + error);
                 }
