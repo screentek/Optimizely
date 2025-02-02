@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=10">
 
     <title>Imageshop</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://client.imageshop.no/scripts/tiny_mce_popup.js"></script>
 
     <style type="text/css">
@@ -78,55 +78,70 @@
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
 
+        function isString(value) {
+            if (typeof value === 'string') {
+                return true;
+            } 
+
+            return false;
+        }
+
+
         function listener(event) {
 
-            console.log("Imageshop result:", event.data);
-            try {
-                var imageData = JSON.parse(event.data.split(";")[0]);
-                var textData = imageData.text[getQueryStringParameterByName("lang")];
-                window.console && console.log(imageData);
+            if (isString(event.data)) {
+                window.console && console.log("Imageshop result:", event.data);
+                try {
+                    var imageData = JSON.parse(event.data.split(";")[0]);
+                    var lang = getQueryStringParameterByName("IMAGESHOPLANGUAGE") ?? "en";
+                    var textData = imageData.text[lang];
+                    window.console && console.log(imageData);
 
-                var imageProfileData = null;
-                if (imageData.profile) {
-                    imageProfileData = {
-                        name: imageData.profile.name,
-                        profileSizes: imageData.profile.profileSizes
+                    var imageProfileData = null;
+                    if (imageData.profile) {
+                        imageProfileData = {
+                            name: imageData.profile.name,
+                            profileSizes: imageData.profile.profileSizes
+                        }
                     }
+
+                    var currentImage = {
+                        code: imageData.code,
+                        url: imageData.image.file,
+                        width: imageData.image.width,
+                        height: imageData.image.height,
+                        changed: new Date(),
+                        cropName: this.cropName,
+                        profile: imageProfileData,
+                        interfaceList: imageData.InterfaceList
+                    };
+
+                    if (textData) {
+                        currentImage.name = textData.title;
+                        currentImage.credits = textData.credits;
+                        currentImage.description = textData.description;
+                        currentImage.altText = textData.altText;
+                        currentImage.rights = textData.rights;
+                        currentImage.tags = textData.tags;
+                    }
+
+                    if (imageData.videos) {
+                        currentImage.aspectRatio = imageData.aspectratio;
+                        currentImage.videos = imageData.videos;
+
+                        insertVideo(currentImage);
+                        return;
+                    }
+
+                    window.console && console.log(currentImage);
+
+                    if (currentImage && isNumeric(currentImage.width) && isNumeric(currentImage.height)) {
+                        insert(currentImage);
+                    }
+
+                } catch (error) {
+                    console.error("Error data from Imageshop ", error, event.data);
                 }
-
-                var currentImage = {
-                    code: imageData.code,
-                    url: imageData.image.file,
-                    width: imageData.image.width,
-                    height: imageData.image.height,
-                    changed: new Date(),
-                    cropName: this.cropName,
-                    profile: imageProfileData,
-                    interfaceList: imageData.InterfaceList
-                };
-
-                if (textData) {
-                    currentImage.name = textData.title;
-                    currentImage.credits = textData.credits;
-                    currentImage.description = textData.description;
-                    currentImage.altText = textData.altText;
-                    currentImage.rights = textData.rights;
-                    currentImage.tags = textData.tags;
-                }
-
-                if (imageData.videos) {
-                    currentImage.aspectRatio = imageData.aspectratio;
-                    currentImage.videos = imageData.videos;
-                }
-
-                window.console && console.log(this.currentImage);
-
-                if (currentImage && isNumeric(currentImage.width) && isNumeric(currentImage.height)) {
-                    insert(currentImage);
-                }
-
-            } catch (error) {
-                console.error("Error data from Imageshop ", error, event.data);
             }
         }
 
@@ -169,6 +184,41 @@
             var imgobj = {
                 src: currentImage.url,
                 alt: currentImage.altText ? currentImage.altText : currentImage.description ? currentImage.description : currentImage.name,
+                border: null,
+                'data-credits': currentImage.credits,
+                'data-authorName': currentImage.authorName,
+                'data-tags': currentImage.tags,
+                'data-name': currentImage.name,
+                'data-description': currentImage.description
+
+            }
+            if (currentImage.height != 0) {
+                imgobj.height = currentImage.height;
+            }
+            if (currentImage.width != 0) {
+                imgobj.width = currentImage.width;
+            }
+
+
+            //not used anymore?
+            // if (alignment != null) {
+            //     imgobj["style"] = "float: " + alignment;
+            // }
+
+            tinyMCEPopup.execCommand('mceInsertContent', false, dom.createHTML('img', imgobj));
+
+            tinyMCEPopup.close();
+
+        }
+
+        function insertVideo(currentImage) {
+
+            var ed = tinyMCEPopup.editor, dom = ed.dom;
+
+            var video = {
+                src: currentImage.videos[0].file,
+                controls: true,
+                title: currentImage.altText ? currentImage.altText : currentImage.description ? currentImage.description : currentImage.name,
                     border: null,
                     'data-credits': currentImage.credits,
                     'data-authorName': currentImage.authorName,
@@ -178,19 +228,13 @@
 
                 }
             if (currentImage.height != 0) {
-                imgobj.height = currentImage.height;
+                video.height = currentImage.height;
             }
             if (currentImage.width != 0) {
-                imgobj.width = currentImage.width;
+                video.width = currentImage.width;
             }
             
-
-            //not used anymore?
-            // if (alignment != null) {
-            //     imgobj["style"] = "float: " + alignment;
-            // }
-
-            tinyMCEPopup.execCommand('mceInsertContent', false, dom.createHTML('img', imgobj));
+            tinyMCEPopup.execCommand('mceInsertContent', false, dom.createHTML('video', video));
 
             tinyMCEPopup.close();
 
