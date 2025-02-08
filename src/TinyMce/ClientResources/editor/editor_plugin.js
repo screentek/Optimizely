@@ -25,8 +25,32 @@ tinymce.PluginManager.add("imageshopoptimizelyplugin", function (ed, url) {
         return Math.floor(10000 + Math.random() * 90000);
     }
 
-    var buttonTitle = "Insert/Upload Imageshop Image";
-    var buttonTitleVideo = "Insert/Upload Imageshop Video";
+    function getLocalizedButtonTitles() {
+        var localizedTitles = {
+            en: {
+                buttonTitle: "Insert/Upload Imageshop Image",
+                buttonTitleVideo: "Insert/Upload Imageshop Video"
+            },
+            nb: {
+                buttonTitle: "Sett inn/Last opp Imageshop-bilde",
+                buttonTitleVideo: "Sett inn/Last opp Imageshop-video"
+            },
+            da: {
+                buttonTitle: "Indsæt/Upload Imageshop Billede",
+                buttonTitleVideo: "Indsæt/Upload Imageshop Video"
+            },
+            sv: {
+                buttonTitle: "Infoga/Ladda upp Imageshop Bild",
+                buttonTitleVideo: "Infoga/Ladda upp Imageshop Video"
+            },
+        };
+
+        var currentLocale = dojo.locale.split('-')[0]; // Get the language part
+        return localizedTitles[currentLocale] || localizedTitles['en']; // Default to English if locale not found
+    }
+
+    // Usage
+    var { buttonTitle, buttonTitleVideo } = getLocalizedButtonTitles();
     var buttonText = "";
     var buttonIcon = url + "/images/icon.png";
     var controllerPath = "/imageshoptinymce/insertimage/";
